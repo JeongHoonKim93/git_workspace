@@ -1,0 +1,176 @@
+####################################################################
+#
+# DBRO 3.2 Multi Config File - Release 2011.05.13 (SMGP 2.1.6)  
+#
+####################################################################
+#
+# Host Info
+#
+sms_ip=210.93.166.133
+sms_port=5000
+sms_id=rsn
+sms_pwd=nsr
+
+####################################################################
+dbro_sign=Off
+
+####################################################################
+# �α� �н�... 
+# log file�� ��ϵ� ���丮 ����  ��� ���� ���� ���丮
+# �� �� ���� ���� ���(����� �����ؾ� �ϸ� "/" or "\\" �� ��� ����)
+log_path=/www/cj/risk_log/
+
+####################################################################
+# ���ý�  MMS�޽�����  ����� SKN������ ����� ���. 
+# ���� ������ skn ������ ������ �ʰ� ����Ѵ�.
+# skn ��ŷ ������ ������� ���丮..
+# �� �� ���� ���� ���(����� �����ؾ� �ϸ� "/" or "\\" �� ��� ����)
+sknfile_path=/www/cj/risk_log/
+
+####################################################################
+#����Ʈ�� ��ٸ��� �ð� , �� �ð��� ������� �� �̻� ����Ʈ�� ��ٸ��� �ʰ� ,
+#�ش緹�ڵ带  �α� ���̺�� �̵���Ų��.(����:�ð�)
+record_life_time=96
+
+####################################################################
+# �����ͺ��̽� ����(db_name)
+# ORACLE, MSSQL, MYSQL, SYBASE, DB2, INFOMIX
+#
+# database driver
+#
+# ORACLE
+# db_name=ORACLE
+# db_driver=oracle.jdbc.driver.OracleDriver
+# db_url=jdbc:oracle:thin:@ DB�����ּ�:1521:ORCL
+#
+# MSSQL (Microsoft SQL Server 6.5, 7, 2000, 2005 and 2008)���� ����
+# db_name=MSSQL
+# db_driver=net.sourceforge.jtds.jdbc.Driver
+# db_url=jdbc:jtds:sqlserver://DB�����ּ�:1433/�����ͺ��̽���
+#
+# MSSQL (Microsoft SQL Server 6.5, 7, 2000)���� ����
+# db_name=MSSQL
+# db_driver=com.microsoft.jdbc.sqlserver.SQLServerDriver
+# db_url=jdbc:microsoft:sqlserver://DB�����ּ�:1433;DatabaseName=�����ͺ��̽���
+#
+# MYSQL
+# db_name=MYSQL
+# db_driver=com.mysql.jdbc.Driver
+# db_url=jdbc:mysql://DB�����ּ�:3306/�����ͺ��̽���?useUnicode=true&characterEncoding=euc-kr
+#
+# SYBASE
+# db_name=SYBASE
+# db_driver=com.sybase.jdbc3.jdbc.SybDriver
+# db_url=jdbc:sybase:Tds: DB�����ּ�:5000/�����ͺ��̽���?CHARSET=eucksc
+#
+# DB2
+# db_name=DB2
+# db_driver=com.ibm.db2.jcc.DB2Driver
+# db_url=jdbc:db2:// DB�����ּ�:50000/�����ͺ��̽���
+#
+# INFORMIX
+# db_name=INFORMIX
+# db_driver=com.informix.jdbc.IfxDriver
+# db_url=jdbc:informix-sqli://DB�����ּ�:555/�����ͺ��̽�:informixserver=INFORMIXSERVER_NAME
+#
+
+db_name=MYSQL
+db_driver=db_driver=com.mysql.jdbc.Driver
+db_url=jdbc:mysql://58.180.17.5:3306/CJ_ASP?useUnicode=true&characterEncoding=euc-kr
+
+db_charset=EUC-KR
+
+####################################################################
+# �����ͺ��̽��� ��������(���̺������ʿ���)
+# MSSQL, ORACLE, MYSQL, SYBASE, DB2 ������
+#
+db_userid=cj_asp
+db_password=rsn601
+
+####################################################################
+# log ���̺� �̵� ���(�⺻ : BATCH)
+# BATCH : ��� �Ϸ�� �޽����� �����ð�(5��)���� log ���̺�� �̵�
+# REAL  : ��� �Ϸ�� �޽����� �ǽð����� log ���̺�� �̵�
+# ��) dbro_logmode=BATCH
+# 
+dbro_logmode=BATCH
+
+####################################################################
+# The time when sender query to DBMS (sec)
+# �������� ������
+tran_term=1
+
+####################################################################
+# The time when connection query to DBMS (sec)
+# ��� 60��
+#db_ping_term=60
+
+####################################################################
+# The time when sender and receiver send ping to Gateway (sec)
+#
+ping_term=60
+
+####################################################################
+# The time when sender query to DBMS
+# "order by em_tran.tran_pr" ��뿩��(On, Off | �⺻ : On)
+# SELECT �� ORDER BY em_tran.tran_pr �� ����ϸ� 
+# DB ������ ���ϰ� �ణ ���� ������ ��ü�� ��û�� �ɼ�.
+# Off �ϸ� SELECT �� tran_status = 1�� ���� �������� �������Ƿ�
+# �޽��� ���̻��� �ʰ� ��۵Ǵ� ���� ����. 
+# 
+# db_orderby  : "order by em_tran.tran_pr" ��뿩��(On, Off)
+#
+#db_orderby=On
+#
+# db_orderby ���� ON���� �����Ǿ� ���� ���� ���
+# ORDER BY ���� ����(ASC, DESC | �⺻ : ASC)
+# order_case=ASC �Ǵ� order_case=DESC
+#order_case=
+
+####################################################################
+# Sender, Receiver On , Off 
+# Off�� ��쿡�� �ش� �����尡 �۵����� �ʴ´�...
+# 
+sender_switch=ON
+receiver_switch=ON
+
+####################################################################
+# Limit Time Zone (�߼����� �ð��� ����)
+#
+limit_begin=
+limit_end=
+
+##############################################################
+# Before Time (���� �ð�)
+# ���� �ð����κ��� ���� �ð� ���� �ð� ������ �߼�.
+# ��� 3�ð�
+before_time=
+
+####################################################################
+# �α����̺� ����ȭ
+# logtable_unify= �α����̺��� �������̺�� ����(on/off)
+# ����(on)�� �α����̺���� em_log
+# �̼���(off)�� em_log_yyyymm
+logtable_unify=off
+
+####################################################################
+# Table Move (em_tran�� ���� em_log_YYYYMM ���̺�� �̵� ���� ����)
+# db_nomove	: ��� �������� LOG���̺�� �̵����� ����(1)
+# db_npbatch	: ���� BATCH�۾��� ���� �ʴ´�.(1)
+# db_nomove, db_npbatch : ������ ���� ������ ����
+db_nomove=
+db_nobatch=
+
+####################################################################
+# log ��� ���� ����
+#    FATAL : 
+#    ERROR : 
+#    WARN  :
+# ex)loglevel="DEBUG","FATAL","ERROR","WARN","INFO"
+# ���Ŭ���̾�Ʈ�α�, �۽�Ŭ���̾�Ʈ�α�, �����α�
+
+consol.log_level=INFO
+system.log_level=INFO
+send.log_level=INFO
+recv.log_level=INFO
+info.log_level=INFO

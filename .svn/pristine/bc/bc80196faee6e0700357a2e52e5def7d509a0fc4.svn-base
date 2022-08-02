@@ -1,0 +1,26 @@
+/* MAIN STYLES */
+
+body {font-size:12px; height:18px; color:#333333; cursor:hand; border:1px solid #FFFFFF; font-weight:bold;}
+ul, li {list-style:none; margin:0; padding:0;}
+p {margin:0px;}
+
+
+A:link    {color:#666666;text-decoration:none;}
+A:visited {color:#666666;text-decoration:none;}
+A:active  {color:#1064cb;text-decoration:none;}
+A:hover   {color:#000000;font-weight:bold;text-decoration:none;}
+
+#tree {width:200px;}
+#tree ul {padding-left:15px;}
+#tree .top {padding-left:0px;}
+#tee li {height:20px;}
+#tree .openFolder {height:20px;line-height:20px;background:url('./../images/csh_dhx_skyblue/folderOpen2.gif') 5px 50% no-repeat; padding-left:25px; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .closedFolder {height:20px;line-height:20px;background:url('./../images/csh_dhx_skyblue/folderClosed2.gif') 5px 50% no-repeat; padding-left:25px; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .fileA {height:20px;line-height:20px;background:url('./../images/icon_a.jpg') 5px 50% no-repeat; padding-left:25px; cursor:pointer; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .fileI {height:20px;line-height:20px;background:url('./../images/icon_i.gif') 5px 50% no-repeat; padding-left:25px; cursor:pointer; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .fileN {height:20px;line-height:20px;background:url('./../images/icon_n.jpg') 5px 50% no-repeat; padding-left:25px; cursor:pointer; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .fileO {height:20px;line-height:20px;background:url('./../images/icon_o.jpg') 5px 50% no-repeat; padding-left:25px; cursor:pointer; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .fileP {height:20px;line-height:20px;background:url('./../images/icon_p.jpg') 5px 50% no-repeat; padding-left:25px; cursor:pointer; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .fileP2 {height:20px;line-height:20px;background:url('./../images/icon_p2.jpg') 5px 50% no-repeat; padding-left:25px; cursor:pointer; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .fileP3 {height:20px;line-height:20px;background:url('./../images/icon_p3.jpg') 5px 50% no-repeat; padding-left:25px; cursor:pointer; cursor:pointer; background-color:#ffffff; border: dashed 1px #ffffff;}
+#tree .selected {background-color:#f0f0f0; border: dashed 1px #ccc;}

@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>빙그레 일일보고서</title>
+
+	<script src="./js/jquery-1.12.4.min.js"></script>
+	<script src="./js/amcharts.js"></script>
+	<script src="./js/serial.js"></script>
+	<script src="./js/pie.js"></script>
+	<script src="./js/xy.js"></script>
+</head>
+<body style="margin:0;padding:0;">
+    <table border="0" cellpadding="0" cellspacing="0" width="1000" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:12px; empty-cells:show;">
+        <tr>
+            <td style="width: 1000px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="1000" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+
+					<!-- header -->
+                    <tr>
+                        <td style="height: 48px; background: #fff59b; border-bottom: 1px solid #fff59b; vertical-align: middle;">
+							<table border="0" cellpadding="0" cellspacing="0" width="1000" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show; vertical-align: middle;">
+								<tr>
+									<td style="border-bottom: 1px solid #ffffff;">
+										<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show; vertical-align: middle;">
+											<tr>
+												<td style="width: 71px; height: 48px; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/logo.gif" alt="빙그레" border="0" width="86" height="24" style="width:86px; height: 24px; vertical-align: middle"></td>
+												<td style="text-align: right;">
+													<span style="color: #212121; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 18px; font-weight: bold; vertical-align: bottom;">일일 Report</span>
+												</td>
+												<td style="width:110px; padding-left: 9px; text-align: right; vertical-align: middle;">
+													<table border="0" cellpadding="0" cellspacing="0" height="20" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show; vertical-align: middle;">
+														<tr>
+															<td style="vertical-align: bottom; text-align: right;">
+																<span style="color: #d52532; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px; font-weight: bold;">Date. </span>
+																<span style="color: #535353; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px; font-weight: bold;">2022-03-31</span>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+
+                        </td>
+                    </tr>
+					<!-- // header -->
+
+					<!-- content -->
+					<tr>
+						<td style="padding-bottom: 20px; border-bottom: 1px solid #fff59b;">
+							<table border="0" cellpadding="0" cellspacing="0" width="1000" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+
+								<!-- 금일 이슈 현황 -->
+								<tr>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+											<!-- con_header -->
+											<tr>
+												<td style="padding: 30px 0 10px 0;">
+													<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+														<tr>
+															<td style="width: 30px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_01.gif" alt="빙그레_01_금일 이슈 현황" border="0" width="30" height="40" style="width:30px; height: 40px; vertical-align: middle">
+															</td>
+															<td style="height: 40px; width: 10px; background: #fbfbfb;">&nbsp;</td>
+															<td style="height: 40px; background: #fbfbfb;">
+																<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 16px; font-weight: bold;">금일 이슈 현황</span>
+															</td>
+															<td style="width: 25px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_end.gif" alt="" border="0" width="25" height="40" style="width:25px; height: 40px; vertical-align: middle">
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<!-- // con_header -->
+											<!-- con -->
+											<tr>
+												<td>
+													<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+														<tr>
+															<td style="border-top: 1px solid #212121; border-bottom: 1px solid #212121;">
+																<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																	<tr>
+																		<td style="height: 38px; padding-left: 10px;"><span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12.5px; font-weight: bold;">1. 언론</span></td>
+																	</tr>
+																	<tr>
+																		<td style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1;">
+																			<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">한국기업평판연구소 식품업계 브랜드평판 순위 관련 보도, 국제신문 등 13건 보도</span></td>
+																				</tr>
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">MZ세대 건강관리 트렌드 현상 관련 보도, 스포츠조선 등 3건 보도</span></td>
+																				</tr>
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">제과업계 모방 제품 사례 관련 1건 보도</span></td>
+																				</tr>
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">빙그레 건강 제품군 및 이커머스 시장 확대 주력 관련 1건 보도</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="height: 38px; padding-left: 10px;"><span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12.5px; font-weight: bold;">2. 개인미디어</span></td>
+																	</tr>
+																	<tr>
+																		<td style="padding-bottom: 12px;">
+																			<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">한국기업평판연구소 식품업계 브랜드평판 순위 관련 보도, 국제신문 등 13건 보도</span></td>
+																				</tr>
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">MZ세대 건강관리 트렌드 현상 관련 보도, 스포츠조선 등 3건 보도</span></td>
+																				</tr>
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">제과업계 모방 제품 사례 관련 1건 보도</span></td>
+																				</tr>
+																				<tr>
+																					<td style="width: 24px; height: 18px; text-align: center; vertical-align: middle;"><img src="https://design.realsn.com/email/2022/binggrae/daily/img/dot.gif" alt="" border="0" width="4" height="4" style="width:4px; height: 4px; vertical-align: middle"></td>
+																					<td><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">빙그레 건강 제품군 및 이커머스 시장 확대 주력 관련 1건 보도</span></td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+
+
+																	<!-- tbody -->
+																	<!-- <tr>
+																		<td style="width: 194px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">빙그레</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">800</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 11px; text-align: left;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/fluc_up.gif" alt="빙그레" border="0" width="9" height="8" style="width:9px; height: 8px;">
+																					</td>
+																					<td>
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">99.9%</span>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">800</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 11px; text-align: left;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/fluc_dn.gif" alt="빙그레" border="0" width="9" height="8" style="width:9px; height: 8px;">
+																					</td>
+																					<td>
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">99.9%</span>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="width: 194px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">롯데</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2,306</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 11px; text-align: left;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/fluc_up.gif" alt="빙그레" border="0" width="9" height="8" style="width:9px; height: 8px;">
+																					</td>
+																					<td>
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">99.9%</span>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2,306</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 11px; text-align: left;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/fluc_dn.gif" alt="빙그레" border="0" width="9" height="8" style="width:9px; height: 8px;">
+																					</td>
+																					<td>
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">99.9%</span>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td style="width: 194px; height: 34px; border-bottom: 1px solid #e8e8e8; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">ETC</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #e8e8e8; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">40,306</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #e8e8e8; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 11px; text-align: left;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/fluc_up.gif" alt="빙그레" border="0" width="9" height="8" style="width:9px; height: 8px;">
+																					</td>
+																					<td>
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">99.9%</span>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #e8e8e8; border-right: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																			<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">40,306</span>
+																		</td>
+																		<td style="width: 139px; height: 34px; border-bottom: 1px solid #e8e8e8; background: #ffffff; text-align: center;">
+																			<table border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<tr>
+																					<td style="width: 11px; text-align: left;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/fluc_dn.gif" alt="빙그레" border="0" width="9" height="8" style="width:9px; height: 8px;">
+																					</td>
+																					<td>
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">99.9%</span>
+																					</td>
+																				</tr>
+																			</table>
+																		</td>
+																	</tr> -->
+																	<!-- // tbody -->
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<!-- // con -->
+										</table>
+									</td>
+								</tr>
+
+								<!-- 유통 경로별 정보 현황 -->
+								<tr>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+											<!-- con_header -->
+											<tr>
+												<td style="padding: 30px 0 10px 0;">
+													<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+														<tr>
+															<td style="width: 30px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_02.gif" alt="빙그레_02_유통 경로별 정보 현황" border="0" width="30" height="40" style="width:30px; height: 40px; vertical-align: middle">
+															</td>
+															<td style="height: 40px; width: 10px; background: #fbfbfb;">&nbsp;</td>
+															<td style="height: 40px; background: #fbfbfb;">
+																<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 16px; font-weight: bold;">유통 경로별 정보 현황</span>
+															</td>
+															<td style="width: 25px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_end.gif" alt="" border="0" width="25" height="40" style="width:25px; height: 40px; vertical-align: middle">
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<!-- // con_header -->
+											<!-- con -->
+											<tr>
+												<td>
+													<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+														<tr>
+															<td style="height: 333px; text-align: center;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/chart_01.gif" alt="" border="0" width="696" height="333" style="width:696px; height: 333px; vertical-align: middle">
+															</td>
+														</tr>
+														<tr>
+															<td style="height: 333px; text-align: center;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/chart_02.gif" alt="" border="0" width="696" height="333" style="width:696px; height: 333px; vertical-align: middle">
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<!-- // con -->
+										</table>
+									</td>
+								</tr>
+								
+								<!-- 자사 언론/소셜 정보 -->
+								<tr>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+											<!-- con_header -->
+											<tr>
+												<td style="padding: 30px 0 10px 0;">
+													<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+														<tr>
+															<td style="width: 30px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_03.gif" alt="빙그레_03_금일 이슈 현황" border="0" width="30" height="40" style="width:30px; height: 40px; vertical-align: middle">
+															</td>
+															<td style="height: 40px; width: 10px; background: #fbfbfb;">&nbsp;</td>
+															<td style="height: 40px; background: #fbfbfb;">
+																<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 16px; font-weight: bold;">자사 언론/소셜 정보</span>
+															</td>
+															<td style="width: 25px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_end.gif" alt="" border="0" width="25" height="40" style="width:25px; height: 40px; vertical-align: middle">
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<!-- // con_header -->
+											<!-- con -->
+											<tr>
+												<td>
+													<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+
+														<!-- 언론 현황 -->
+														<tr>
+															<td style="border-top: 1px solid #636363; padding-bottom: 20px;">
+																<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																	<tr>
+																		<td style="height: 35px; padding-left: 10px;"><span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12.5px; font-weight: bold;">1. 언론 현황</span></td>
+																	</tr>
+																	<tr>
+																		<td style="border-top: 2px solid #000000; ">
+																			<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<!-- thead -->
+																				<tr>
+																					<td style="width: 70px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">성향</span>
+																					</td>
+																					<td style="				border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">제목</span>
+																					</td>
+																					<td style="width: 89px; height: 25px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">출처</span>
+																					</td>
+																					<td style="width: 89px; height: 25px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">날짜</span>
+																					</td>
+																					<td style="width: 50px; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">확산</span>
+																					</td>
+																				</tr>
+																				<!-- // thead -->
+																				<!-- tbody -->
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/posi.gif" alt="긍정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">'어다행다'... 즐겁게 건강 챙기는 MZ세대의 '헬시플레저’</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/posi.gif" alt="긍정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">올 설엔 '호랑이 기운'을 선물하세요</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/nega.gif" alt="부정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">이달 식품업체 평판, CJ제일제당 1위…부산 한성기업 23위</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/nega.gif" alt="부정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">임인년, 한해 내 건강 책임질 건기식 꿀템 모음</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/neut.gif" alt="중립" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">같은 과자 아니야?…제과업계 포장지 모방 ‘만연’</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/neut.gif" alt="중립" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">빙그레, “건강제품군·이커머스시장 확대 힘쓸 것” 영업이익 오를까</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+						
+																				<!-- // tbody -->
+																			</table>
+																		</td>
+																	</tr>
+
+																</table>
+															</td>
+														</tr>
+														
+														<!-- 개인미디어 현황 -->
+														<tr>
+															<td style="border-top: 1px solid #636363;">
+																<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																	<tr>
+																		<td style="height: 35px; padding-left: 10px;"><span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12.5px; font-weight: bold;">2. 개인미디어 현황</span></td>
+																	</tr>
+																	<tr>
+																		<td style="border-top: 2px solid #000000; ">
+																			<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<!-- thead -->
+																				<tr>
+																					<td style="width: 70px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">성향</span>
+																					</td>
+																					<td style="				border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">제목</span>
+																					</td>
+																					<td style="width: 89px; height: 25px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">출처</span>
+																					</td>
+																					<td style="width: 89px; height: 25px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">날짜</span>
+																					</td>
+																					<td style="width: 50px; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">확산</span>
+																					</td>
+																				</tr>
+																				<!-- // thead -->
+																				<!-- tbody -->
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/posi.gif" alt="긍정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">'어다행다'... 즐겁게 건강 챙기는 MZ세대의 '헬시플레저’</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/posi.gif" alt="긍정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">올 설엔 '호랑이 기운'을 선물하세요</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/nega.gif" alt="부정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">이달 식품업체 평판, CJ제일제당 1위…부산 한성기업 23위</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/nega.gif" alt="부정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">임인년, 한해 내 건강 책임질 건기식 꿀템 모음</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/neut.gif" alt="중립" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">같은 과자 아니야?…제과업계 포장지 모방 ‘만연’</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/neut.gif" alt="중립" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">빙그레, “건강제품군·이커머스시장 확대 힘쓸 것” 영업이익 오를까</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2</span>
+																					</td>
+																				</tr>
+						
+																				<!-- // tbody -->
+																			</table>
+																		</td>
+																	</tr>
+
+																</table>
+															</td>
+														</tr>
+														
+													</table>
+												</td>
+											</tr>
+											<!-- // con -->
+										</table>
+									</td>
+								</tr>
+								
+								<!-- 업계 언론 정보 -->
+								<tr>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+											<!-- con_header -->
+											<tr>
+												<td style="padding: 30px 0 10px 0;">
+													<table border="0" cellpadding="0" cellspacing="0" width="750" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+														<tr>
+															<td style="width: 30px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_04.gif" alt="빙그레_04_업계 언론 정보" border="0" width="30" height="40" style="width:30px; height: 40px; vertical-align: middle">
+															</td>
+															<td style="height: 40px; width: 10px; background: #fbfbfb;">&nbsp;</td>
+															<td style="height: 40px; background: #fbfbfb;">
+																<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 16px; font-weight: bold;">업계 언론 정보</span>
+															</td>
+															<td style="width: 25px; height: 40px; vertical-align: top;">
+																<img src="https://design.realsn.com/email/2022/binggrae/daily/img/header_end.gif" alt="" border="0" width="25" height="40" style="width:25px; height: 40px; vertical-align: middle">
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+											<!-- // con_header -->
+											<!-- con -->
+											<tr>
+												<td>
+													<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+
+														<!-- 빙그레 -->
+														<tr>
+															<td style="padding-bottom: 20px;">
+																<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																	<tr>
+																		<td style="border-top: 2px solid #000000; ">
+																			<table border="0" cellpadding="0" cellspacing="0" width="700" align="center" style="border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum;font-size:14px;empty-cells:show;">
+																				<!-- thead -->
+																				<tr>
+																					<td style="width: 70px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">성향</span>
+																					</td>
+																					<td style="				border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">제목</span>
+																					</td>
+																					<td style="width: 89px; height: 25px; border-right: 1px solid #ffffff; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">출처</span>
+																					</td>
+																					<td style="width: 89px; background: #efefef; text-align: center;">
+																						<span style="color: #333333; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">날짜</span>
+																					</td>
+																				</tr>
+																				<!-- // thead -->
+																				<!-- tbody -->
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/posi.gif" alt="긍정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">'어다행다'... 즐겁게 건강 챙기는 MZ세대의 '헬시플레저’</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">스포츠 조선</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/posi.gif" alt="긍정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">올 설엔 '호랑이 기운'을 선물하세요</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">아시아통신</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/nega.gif" alt="부정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">이달 식품업체 평판, CJ제일제당 1위…부산 한성기업 23위</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">뉴시스</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/nega.gif" alt="부정" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">임인년, 한해 내 건강 책임질 건기식 꿀템 모음</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">뉴스1</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/neut.gif" alt="중립" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">같은 과자 아니야?…제과업계 포장지 모방 ‘만연’</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">이데일리</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<img src="https://design.realsn.com/email/2022/binggrae/daily/img/neut.gif" alt="중립" border="0" width="51" height="22" style="width:51px; height: 22px;">
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; padding-left: 10px; text-align: left;">
+																						<a href="#" stlye="color: #666666;" target="_blank"><span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">빙그레, “건강제품군·이커머스시장 확대 힘쓸 것” 영업이익 오를까</span></a>
+																					</td>
+																					<td style="height: 34px; border-right: 1px solid #fbfbfb; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">EBN</span>
+																					</td>
+																					<td style="height: 34px; border-bottom: 1px solid #f6f6f6; background: #ffffff; text-align: center;">
+																						<span style="color: #666666; font-family:맑은 고딕,Malgun Gothic,돋움,Dotum; font-size: 12px;">2022-01-19</span>
+																					</td>
+																				</tr>
+						
+																				<!-- // tbody -->
+																			</table>
+																		</td>
+																	</tr>
+
+																</table>
+															</td>
+														</tr>
+														
+													</table>
+												</td>
+											</tr>
+											<!-- // con -->
+										</table>
+									</td>
+								</tr>
+
+							</table>
+						</td>
+					</tr>
+					<!-- // content -->
+
+                </table>
+            </td>
+        </tr>
+    </table>
+
+	<div id="chart_01" class="ui_chart_wrap" style="width: 696px; height: 333px; background: #ffffff;"></div>
+	<script type="text/javascript">
+		(function(){
+			var chartOption = {
+				"type": "pie",
+				"balloonText": "<strong>[[category]]</strong> : [[value]]건 ([[percents]]%)",
+				"innerRadius": "45%",
+				"labelRadius": -35,
+				"labelText": "[[value]] ([[percents]]%)",
+				// "labelText": "[[category]]<br>[[value]]건<br>([[percents]]%)",
+				"pullOutRadius": "100%",
+				"radius": 135,
+				"startAngle": -155,
+				"startRadius": "0%",
+				"colors": [
+					"#385593",		// 언론
+					"#555555",		// 포탈
+					"#7ac35c",		// 블로그
+					"#f2d301",		// 카페
+					"#ec8e56",		// 커뮤니티
+					"#75cae5",		// 트위터
+					"#458eed",		// 페이스북
+					"#e57fb6",		// 인스타그램
+					"#ce553f",		// 유튜브
+					"#cccdcd",		// 기타
+				],
+				"fontSize": 12,
+				// "hideLabelsPercent": 0,
+				"marginBottom": 10,
+				"marginLeft": 0,
+				"marginRight": 0,
+				"marginTop": 20,
+				"maxLabelWidth": 100,
+				"outlineThickness": 3,
+				"pullOutDuration": 0,
+				"startDuration": 0,
+				"titleField": "category",
+				"valueField": "column-1",
+				"classNameField": "class",
+				"accessible": false,
+				"addClassNames": true,
+				"autoResize": false,
+				"color": "#ffffff",
+				"percentPrecision": 1,
+				"allLabels": [],
+				"balloon": {},						
+				"legend": {
+					"enabled": true,
+					"align": "center",
+					"autoMargins": true,
+					"color": "#999999",
+					"marginLeft": 0,
+					"marginRight": 0,
+					"marginTop": 10,
+					"markerLabelGap": 5,
+					"markerSize": 8,
+					"markerType": "circle",
+					"periodValueText": "",
+					"spacing": 20,
+					"valueText": "",
+					"equalWidths": false,
+					"fontSize": 11,
+					// "valueWidth": 0,
+					"verticalGap": 10
+				},
+				"titles": [],
+				"dataProvider": [
+					{
+						"category": "언론",
+                        "column-1": 118,
+					},
+					{
+						"category": "포탈",
+                        "column-1": 96,
+					},
+					{
+						"category": "블로그 ",
+                        "column-1": 76,
+					},
+					{
+						"category": "카페",
+                        "column-1": 62,
+					},
+					{
+						"category": "커뮤니티",
+                        "column-1": 61,
+					},
+					{
+						"category": "트위터",
+                        "column-1": 55,
+					},
+					{
+						"category": "페이스북 ",
+                        "column-1": 51,
+					},
+					{
+						"category": "인스타그램",
+                        "column-1": 20,
+					},
+					{
+						"category": "유튜브",
+                        "column-1": 15,
+					},
+					{
+						"category": "기타",
+                        "column-1": 10
+					}
+				]
+			};
+			var chart = AmCharts.makeChart( "chart_01", chartOption );
+		})();
+	</script>
+	
+    <!-- 차트 2 -->
+    <div id="chart_02" style="width: 696px; height: 333px; background: #ffffff;"></div>
+    <script>
+        (function(){
+            AmCharts.makeChart( "chart_02", {
+                "type": "serial",
+                "categoryField": "category",
+                "columnWidth": 0.39,
+                "marginBottom": 0,
+                "marginLeft": 0,
+                "marginRight": 0,
+                "marginTop": -45,
+				// "autoMargins": false,
+                "colors": [
+                    "#5ba1e0",
+                    "#ea7070",
+                    "#808080"
+                ],
+				"fontSize": 12,
+                "color": "#666666",
+                "categoryAxis": {
+                    "gridPosition": "start",
+                    "axisColor": "#ececec",
+                    "gridCount": 0,
+                    "gridThickness": 0,
+                    "tickLength": 0
+                },
+                "trendLines": [],
+                "graphs": [
+                    {
+                        "balloonText": "",
+                        "color": "#ffffff",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-1",
+                        "labelText": "[[value]]",
+                        "title": "긍정",
+                        "type": "column",
+                        "valueField": "column-1",
+                        "showAllValueLabels": true
+                    },
+                    {
+                        "balloonText": "",
+                        "color": "#ffffff",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-2",
+                        "labelText": "[[value]]",
+                        "title": "부정",
+                        "type": "column",
+                        "valueField": "column-2",
+                        "showAllValueLabels": true
+                    },
+                    {
+                        "balloonText": "",
+                        "color": "#ffffff",
+                        "fillAlphas": 1,
+                        "id": "AmGraph-3",
+                        "labelText": "[[value]]",
+                        "title": "중립",
+                        "type": "column",
+                        "valueField": "column-3",
+                        "showAllValueLabels": true
+                    }
+                ],
+                "guides": [],
+                "valueAxes": [
+                    {
+                        "id": "ValueAxis-1",
+                        "stackType": "regular",
+                        "synchronizationMultiplier": 0,
+                        "zeroGridAlpha": 0,
+                        "autoGridCount": false,
+                        "axisThickness": 0,
+                        "color": "#999999",
+                    	"axisColor": "#ececec",
+						"fontSize": 10,
+                        "strictMinMax": true,
+                        "maximum": 26,         // 가장 높은 이슈의 정보량 합
+                        "dashLength": 3,
+                        "tickLength": 0,
+                        "title": ""
+                    }
+                ],
+				"legend": {
+					"enabled": true,
+					"align": "center",
+					"autoMargins": false,
+					"color": "#999999",
+					"marginLeft": 0,
+					"marginRight": 0,
+					"marginTop": -10,
+					"markerLabelGap": 5,
+					"markerSize": 8,
+					"markerType": "circle",
+					"periodValueText": "",
+					"spacing": 12,
+					"valueText": "",
+					"fontSize": 11,
+					// "valueWidth": 0,
+					"verticalGap": 10
+				},
+                "allLabels": [],
+                "balloon": {},
+                "titles": [],
+                "dataProvider": [
+                    {
+                        "category": "언론",
+                        "column-1": 8,
+                        "column-2": 5,
+                        "column-3": 9
+                    },
+                    {
+                        "category": "포탈",
+                        "column-1": 6,
+                        "column-2": 7,
+                        "column-3": 8
+                    },
+                    {
+                        "category": "블로그",
+                        "column-1": 6,
+                        "column-2": 7,
+                        "column-3": 8
+                    },
+                    {
+                        "category": "카페",
+                        "column-1": 2,
+                        "column-2": 3,
+                        "column-3": 8
+                    },
+                    {
+                        "category": "커뮤니티",
+                        "column-1": "3",
+                        "column-2": "5",
+                        "column-3": 10
+                    },
+                    {
+                        "category": "트위터",
+                        "column-1": "3",
+                        "column-2": "5",
+                        "column-3": 10
+                    },
+                    {
+                        "category": "페이스북",
+                        "column-1": "3",
+                        "column-2": "5",
+                        "column-3": 10
+                    },
+                    {
+                        "category": "인스타그램",
+                        "column-1": "3",
+                        "column-2": "5",
+                        "column-3": 10
+                    },
+                    {
+                        "category": "유튜브",
+                        "column-1": "3",
+                        "column-2": "5",
+                        "column-3": 10
+                    },
+                    {
+                        "category": "기타",
+                        "column-1": "1",
+                        "column-2": "1",
+                        "column-3": 1
+                    }
+                ]
+            });
+        })();
+    </script>
+    <!-- 차트 2 -->
+</body>
+</html>

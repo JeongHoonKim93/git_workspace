@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+#popup_container {
+	
+	// 사용자 등록/수정
+	@at-root #popup_rel_info {
+		width: 900px;
+
+		.ui_in_search {
+			input {
+				width: 400px;
+			}
+		}
+	}
+
+	// 이슈 목록
+	@at-root #popup_issue {
+		width: 900px;
+	}
+
+	// 이슈정보 상세보기
+	@at-root #popup_issue_view {
+		width: 800px;
+
+		.voc_grp {
+			float: none;
+			padding: 5px 0;
+			border-bottom: 1px dotted #e5e5e5;
+			line-height: 1.4em;
+
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+}
+
+#inPopup_container {
+
+	// 이슈 상세관리
+	@at-root #add_issue {
+		width: 600px;
+
+		.dcp {
+			select {
+				width: 150px;
+			}
+		}
+
+		.ui_textarea {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: CJONLYONENEWbodyLight;
+    src: url("../font/CJ ONLYONE NEW body Light.eot?#iefix") format('embedded-opentype'),
+        url("../font/CJ ONLYONE NEW body Light.woff") format('woff'),
+        url("../font/CJ ONLYONE NEW body Light.woff2") format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    unicode-range: U+0-10FFFF;
+}
+@font-face {
+    font-family: CJONLYONENEWbodyRegular;
+    src: url("../font/CJ ONLYONE NEW body Regular.eot?#iefix") format('embedded-opentype'),
+        url("../font/CJ ONLYONE NEW body Regular.woff") format('woff'),
+        url("../font/CJ ONLYONE NEW body Regular.woff2") format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    unicode-range: U+0-10FFFF;
+}
+
+// Variables
+$font_family: 'CJONLYONENEWbodyLight', '맑은 고딕', 'Malgun Gothic', '돋움', 'Dotum', 'AppleSDGothicNeo-Light', 'Sans-serif', 'Tahoma';
+//$font_family: Helvetica, Arial, "Microsoft Yahei","微软雅黑", STXihei, "华文细黑", sans-serif;
+$fs_default: 0.750em;			// 12px
+$fs_s_size: 0.917em;			// 11px
+
+// Style
+.fs_small {
+	font-size: $fs_s_size;
+}
+body{
+	font-family : $font_family;
+	font-size: $fs_default;
+	letter-spacing: -.02em;
+}

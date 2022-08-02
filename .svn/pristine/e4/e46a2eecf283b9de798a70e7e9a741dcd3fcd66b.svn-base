@@ -1,0 +1,307 @@
+@charset "utf-8";
+
+/* Style */
+header {
+    // border-top: 6px solid $point_color;
+    border-bottom: 2px solid #dddddd;
+    background: #ffffff;
+    // overflow: hidden;
+    // @include shadow( 0, 2px, 2px, 0.05, 0, 0, 0 );
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #e60012;
+        @include transition(0);
+    }
+
+    >.wrap {
+        position: relative;
+        width: $doc_wid;
+        margin: 0 auto;
+        @include clearBoth();
+        @include transition(0);
+
+        >* {
+            float: left;
+        }
+
+        >h1 {
+            display: table;
+            padding-right: 44px;
+            // text-align: left;
+
+            a {
+                display: table-cell;
+                width: auto;
+                height: 70px;
+                vertical-align: middle;
+                // margin: 0 auto;
+                // box-sizing: border-box;
+
+                img {
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        >.util {
+            position: absolute;
+            top: 0;
+            right: 36px;
+            padding: 20px 0 0 0;
+            color: #ffffff;
+            // font-size: 1.143em;
+            line-height: 52px;
+            z-index: 1;
+
+            .wrap {
+                @include clearBoth();
+
+                >* {
+                    float: left;
+                    margin: 0 0 0 5px;
+
+                    &.user {
+                        position: relative;
+                        padding: 6px 0 0 16px;
+                        margin-right: 5px;
+                        color: #666666;
+                        font-size: 12px;
+                        line-height: 18px;
+                        @include transition();
+
+                        &:before {
+                            content: '\e08a';
+                            position: absolute;
+                            top: 7px;
+                            left: 0;
+                            font-family: 'icomoon';
+                            color: #949494;
+                            font-size: 16px;
+                            line-height: 1;
+                        }
+
+                        &:hover {
+                            // border-bottom: 1px solid $font_color_hl;
+
+                            &:before {
+                                content: '\e085';
+                                color: $font_color_hl;
+                            }
+                        }
+                    }
+
+                    &.ui_btn {
+                        width: 30px;
+                        height: 30px;
+                        padding: 0;
+                        border-radius: 50%;
+                        box-sizing: border-box;
+
+                        .txt {
+                            display: block;
+                            padding-left: 1px;
+                            font-family: 'icomoon';
+                            color: #909090;
+                            font-weight: normal;
+                            line-height: 28px;
+                            font-size: 16px;
+                        }
+
+                        // &.btn_logout {
+                        //     .txt {
+                        //         line-height: 25px;
+                        //     }
+                        // }
+
+                        // &.btn_system {
+                        //     .txt {
+                        //     }
+                        // }
+                    }
+                }
+            }
+        }
+
+        >.pins {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            margin-left: 570px;
+            width: 50px;
+            z-index: 4;
+
+            >.header_fix_pin {
+                >input[type=checkbox] {
+                    @include customComponent();
+
+                    &+label {
+                        width: 30px;
+                        height: 30px;
+                        line-height: 28px;
+
+                        >* {
+                            width: 28px;
+                            height: 28px;
+                            line-height: 28px;
+                        }
+                    }
+
+                    &:checked {
+
+                        &+label {
+                            border-color: $component_active_color_hl;
+                            background: $component_active_color_hl;
+                            color: #ffffff;
+
+                            >* {
+                                color: #ffffff;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        >nav {
+            position: relative;
+            width: calc(100% - 130px);
+
+            >ul {
+                @include clearBoth();
+
+                >li {
+                    float: left;
+                    position: relative;
+                    display: block;
+
+                    &:last-child {
+                        &:after {
+                            content: none;
+                        }
+                    }
+
+                    >a {
+                        display: block;
+                        position: relative;
+                        // overflow: hidden;
+                        color: $font_color;
+                        padding: 0 55px;
+                        font-weight: bold;
+                        text-align: center;
+                        line-height: 68px;
+
+                        .txt {
+                            position: relative;
+                            font-size: 21px;
+                            @include transition();
+
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                top: 4px;
+                                right: -4px;
+                                width: 8px;
+                                height: 8px;
+                                transform: skewX(-25deg);
+                                background: $point_color;
+                                @include transition(.06);
+                                @include opacity(0);
+                            }
+
+                            &:lang(ko) {
+                                font-size: 21px;
+                            }
+
+                            &:lang(en) {
+                                font-size: 24px;
+                            }
+                        }
+
+                        &:hover,
+                        &.is-active {
+                            color: $point_color;
+
+                            .txt {
+                                color: $point_color;
+                                // &:after {
+                                //     top: -4px;
+                                //     right: -12px;
+                                //     @include opacity( 1 );
+                                // }
+                            }
+                        }
+
+                        &.is-active {
+                            // &:after {
+                            //     content: '';
+                            //     position: absolute;
+                            //     left: 0;
+                            //     bottom: -3px;
+                            //     width: 100%;
+                            //     height: 4px;
+                            //     background: #4e4e50;
+                            //     border-radius: 2px;
+                            // }
+                        }
+                    }
+                }
+            }
+        }
+
+        >.today {
+            position: absolute;
+            right: 0;
+            bottom: -37px;
+            font-size: 1.143em;
+            line-height: 1;
+
+            &:before {
+                content: 'Today.';
+                @include inlineBlock();
+                padding: 0 10px 0 0;
+                color: $point_color;
+                font-size: 0.688em;
+                line-height: 16px;
+                vertical-align: top;
+            }
+
+            &.is-fold {
+                bottom: -29px;
+            }
+        }
+    }
+
+    &.is-fold {
+        &:before {
+            top: -1px;
+        }
+
+        >.wrap {
+            margin-top: -53px;
+        }
+
+        &+#container {
+            #top_searchs {
+                top: 0;
+            }
+        }
+    }
+
+    &.is-fixed {
+        position: sticky;
+        top: 0px;
+
+        &+#container {
+            #top_searchs {
+                position: sticky;
+                top: 74px;
+            }
+        }
+    }
+}

@@ -1,0 +1,435 @@
+[2022년05월04일 08시54분44초] 
+ SQLException
+Oracle Error Code [1267]
+SQLState          [HY000]
+<<-----------------------------------------------------------------------
+	SELECT A.* 																								
+  , FN_GET_SITE_SAME2(A.MD_PSEQ,'2022-05-04 0:00:00','2022-05-04 23:59:59') AS MD_SAME_CT 				
+  , FN_GET_SITE_SAME_CHECK2(A.MD_PSEQ,'2022-05-04 0:00:00','2022-05-04 23:59:59') AS MD_SAME_CT_CHECK	
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'IS' AND ID_SEQ = A.ID_SEQ),0) AS ISSUE_REPORT	
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'OIS' AND ID_SEQ = A.ID_SEQ),0) AS ONLINE_ISSUE_REPORT
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'E' AND ID_SEQ = A.ID_SEQ),0) AS EMERGENCY_REPORT
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 14)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 14)) AS HYCARD_SENTI										
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 24)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 24)) AS HYCAP_SENTI											
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 34)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 34)) AS HYCOM_SENTI											
+ FROM (										
+ 	SELECT A.*								
+ 	FROM									
+ 	(										
+  	SELECT 									
+    	   	DISTINCT(A.ID_SEQ) AS ID_SEQ		
+   	  	, A.MD_SEQ							
+   	  	, A.MD_PSEQ							
+  	   	, A.MD_TYPE							
+  	   	, A.S_SEQ							
+ 	   	, A.SG_SEQ							
+  	   	, A.MD_DATE							
+  	   	, IF(A.MD_SITE_NAME LIKE '%네이버카페%','네이버카페',A.MD_SITE_NAME) AS MD_SITE_NAME					
+   	  	, A.ID_TITLE						
+   	  	, A.ID_URL							
+  	   	, A.ID_CONTENT						
+  	   	, A.ID_TRANS_USEYN						
+   	  	, M.M_NAME							
+ 	 FROM ISSUE_DATA A						
+		INNER JOIN MEMBER M ON A.M_SEQ = M.M_SEQ 			
+ 	WHERE A.MD_DATE BETWEEN '2022-05-04 0:00:00' AND '2022-05-04 23:59:59'							
+ 	 AND SG_SEQ IN (93,94,95,97,99,100,102)																	
+ GROUP BY MD_PSEQ 
+ 	ORDER BY A.ID_SEQ DESC																			
+ 	) A																								
+ 	LIMIT 0, 20																	
+ ) A																									
+
+----------------------------------------------------------------------->>
+java.sql.SQLException: Illegal mix of collations (utf8_general_ci,COERCIBLE) and (utf8_unicode_ci,COERCIBLE) for operation '='
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1056)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3376)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3308)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1837)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1961)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2537)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2466)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1383)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:210)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:210)
+	at risk.issue.IssueMgr.searchIssueData(IssueMgr.java:14047)
+	at org.apache.jsp.riskv3.issue.aj_005fissue_005flist_jsp._jspService(aj_005fissue_005flist_jsp.java:247)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:443)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1372)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+[2022년05월04일 13시48분44초] 
+ SQLException
+Oracle Error Code [1267]
+SQLState          [HY000]
+<<-----------------------------------------------------------------------
+	SELECT A.* 																								
+  , FN_GET_SITE_SAME2(A.MD_PSEQ,'2022-05-04 0:00:00','2022-05-04 23:59:59') AS MD_SAME_CT 				
+  , FN_GET_SITE_SAME_CHECK2(A.MD_PSEQ,'2022-05-04 0:00:00','2022-05-04 23:59:59') AS MD_SAME_CT_CHECK	
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'IS' AND ID_SEQ = A.ID_SEQ),0) AS ISSUE_REPORT	
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'OIS' AND ID_SEQ = A.ID_SEQ),0) AS ONLINE_ISSUE_REPORT
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'E' AND ID_SEQ = A.ID_SEQ),0) AS EMERGENCY_REPORT
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 14)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 14)) AS HYCARD_SENTI										
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 24)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 24)) AS HYCAP_SENTI											
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 34)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 34)) AS HYCOM_SENTI											
+ FROM (										
+ 	SELECT A.*								
+ 	FROM									
+ 	(										
+  	SELECT 									
+    	   	DISTINCT(A.ID_SEQ) AS ID_SEQ		
+   	  	, A.MD_SEQ							
+   	  	, A.MD_PSEQ							
+  	   	, A.MD_TYPE							
+  	   	, A.S_SEQ							
+ 	   	, A.SG_SEQ							
+  	   	, A.MD_DATE							
+  	   	, IF(A.MD_SITE_NAME LIKE '%네이버카페%','네이버카페',A.MD_SITE_NAME) AS MD_SITE_NAME					
+   	  	, A.ID_TITLE						
+   	  	, A.ID_URL							
+  	   	, A.ID_CONTENT						
+  	   	, A.ID_TRANS_USEYN						
+   	  	, M.M_NAME							
+ 	 FROM ISSUE_DATA A						
+		INNER JOIN MEMBER M ON A.M_SEQ = M.M_SEQ 			
+ 	WHERE A.MD_DATE BETWEEN '2022-05-04 0:00:00' AND '2022-05-04 23:59:59'							
+ 	 AND SG_SEQ IN (93,94,95,97,99,100,102)																	
+ GROUP BY MD_PSEQ 
+ 	ORDER BY A.ID_SEQ DESC																			
+ 	) A																								
+ 	LIMIT 0, 20																	
+ ) A																									
+
+----------------------------------------------------------------------->>
+java.sql.SQLException: Illegal mix of collations (utf8_general_ci,COERCIBLE) and (utf8_unicode_ci,COERCIBLE) for operation '='
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1056)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3376)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3308)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1837)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1961)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2537)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2466)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1383)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:210)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:210)
+	at risk.issue.IssueMgr.searchIssueData(IssueMgr.java:14047)
+	at org.apache.jsp.riskv3.issue.aj_005fissue_005flist_jsp._jspService(aj_005fissue_005flist_jsp.java:247)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:443)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1372)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+[2022년05월04일 14시22분53초] 
+ SQLException
+Oracle Error Code [0]
+SQLState          [S0022]
+<<-----------------------------------------------------------------------
+Column 'IMPORTTANT' not found.
+----------------------------------------------------------------------->>
+java.sql.SQLException: Column 'IMPORTTANT' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1056)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:927)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5474)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at risk.report.ReportMgrMain.getDailyReport(ReportMgrMain.java:352)
+	at org.apache.jsp.riskv3.report.aj_005fown_005fpress_005flist_jsp._jspService(aj_005fown_005fpress_005flist_jsp.java:213)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:443)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1372)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+[2022년05월04일 14시30분08초] 
+ SQLException
+Oracle Error Code [0]
+SQLState          [S0022]
+<<-----------------------------------------------------------------------
+Column 'IMPORTTANT' not found.
+----------------------------------------------------------------------->>
+java.sql.SQLException: Column 'IMPORTTANT' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1056)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:927)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5474)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at risk.report.ReportMgrMain.getDailyReport(ReportMgrMain.java:352)
+	at org.apache.jsp.riskv3.report.aj_005fown_005fpress_005flist_jsp._jspService(aj_005fown_005fpress_005flist_jsp.java:213)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:443)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1372)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+[2022년05월04일 14시30분08초] 
+ SQLException
+Oracle Error Code [0]
+SQLState          [S0022]
+<<-----------------------------------------------------------------------
+Column 'IMPORTTANT' not found.
+----------------------------------------------------------------------->>
+java.sql.SQLException: Column 'IMPORTTANT' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1056)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:927)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5474)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at risk.report.ReportMgrMain.getDailyReport(ReportMgrMain.java:352)
+	at org.apache.jsp.riskv3.report.aj_005fown_005fsocial_005flist_jsp._jspService(aj_005fown_005fsocial_005flist_jsp.java:213)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:443)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1372)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+[2022년05월04일 14시30분08초] 
+ SQLException
+Oracle Error Code [0]
+SQLState          [S0022]
+<<-----------------------------------------------------------------------
+Column 'IMPORTTANT' not found.
+----------------------------------------------------------------------->>
+java.sql.SQLException: Column 'IMPORTTANT' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1056)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:927)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5474)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingResultSet.getString(DelegatingResultSet.java:267)
+	at risk.report.ReportMgrMain.getDailyReport(ReportMgrMain.java:352)
+	at org.apache.jsp.riskv3.report.aj_005frival_005fpress_005flist_jsp._jspService(aj_005frival_005fpress_005flist_jsp.java:213)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:443)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1372)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+
+[2022년05월04일 14시57분19초] 
+ SQLException
+Oracle Error Code [1267]
+SQLState          [HY000]
+<<-----------------------------------------------------------------------
+	SELECT A.* 																								
+  , FN_GET_SITE_SAME2(A.MD_PSEQ,'2022-05-04 0:00:00','2022-05-04 23:59:59') AS MD_SAME_CT 				
+  , FN_GET_SITE_SAME_CHECK2(A.MD_PSEQ,'2022-05-04 0:00:00','2022-05-04 23:59:59') AS MD_SAME_CT_CHECK	
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'IS' AND ID_SEQ = A.ID_SEQ),0) AS ISSUE_REPORT	
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'OIS' AND ID_SEQ = A.ID_SEQ),0) AS ONLINE_ISSUE_REPORT
+  , IFNULL((SELECT 1 FROM ISSUE_REPORT WHERE IR_TYPE = 'E' AND ID_SEQ = A.ID_SEQ),0) AS EMERGENCY_REPORT
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 14)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 14)) AS HYCARD_SENTI										
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 24)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 24)) AS HYCAP_SENTI											
+, IF(FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 34)= '', ' - ', FN_ISSUE_NAME_ID_SEQ( A.ID_SEQ, 34)) AS HYCOM_SENTI											
+ FROM (										
+ 	SELECT A.*								
+ 	FROM									
+ 	(										
+  	SELECT 									
+    	   	DISTINCT(A.ID_SEQ) AS ID_SEQ		
+   	  	, A.MD_SEQ							
+   	  	, A.MD_PSEQ							
+  	   	, A.MD_TYPE							
+  	   	, A.S_SEQ							
+ 	   	, A.SG_SEQ							
+  	   	, A.MD_DATE							
+  	   	, IF(A.MD_SITE_NAME LIKE '%네이버카페%','네이버카페',A.MD_SITE_NAME) AS MD_SITE_NAME					
+   	  	, A.ID_TITLE						
+   	  	, A.ID_URL							
+  	   	, A.ID_CONTENT						
+  	   	, A.ID_TRANS_USEYN						
+   	  	, M.M_NAME							
+ 	 FROM ISSUE_DATA A						
+		INNER JOIN MEMBER M ON A.M_SEQ = M.M_SEQ 			
+ 	WHERE A.MD_DATE BETWEEN '2022-05-04 0:00:00' AND '2022-05-04 23:59:59'							
+ 	 AND SG_SEQ IN (93,94,95,97,99,100,102)																	
+ GROUP BY MD_PSEQ 
+ 	ORDER BY A.ID_SEQ DESC																			
+ 	) A																								
+ 	LIMIT 0, 20																	
+ ) A																									
+
+----------------------------------------------------------------------->>
+java.sql.SQLException: Illegal mix of collations (utf8_general_ci,COERCIBLE) and (utf8_unicode_ci,COERCIBLE) for operation '='
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1056)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:957)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3376)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3308)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1837)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:1961)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2537)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2466)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1383)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:210)
+	at org.apache.tomcat.dbcp.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:210)
+	at risk.issue.IssueMgr.searchIssueData(IssueMgr.java:14047)
+	at org.apache.jsp.riskv3.issue.aj_005fissue_005flist_jsp._jspService(aj_005fissue_005flist_jsp.java:247)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:70)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:443)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:385)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:329)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:475)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:498)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:796)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1372)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+

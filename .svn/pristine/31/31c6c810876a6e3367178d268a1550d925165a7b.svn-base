@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+// Variables
+$doc_wid: 980px;			// 화면 가로 사이즈
+$logo_wid: 200px;			// 로고 가로 사이즈
+$nav_wid: $doc_wid - $logo_wid;		// Nav 가로 사이즈
+$header_util_hgt: 40px;			// Header Util 사이즈
+$header_hgt: 70px;			// Header 사이즈
+$footer_hgt: 46px;			// Footer 높이
+$interaction_time: 0.16;		// 사용자 액션 트윈 타임
+
+$ui_img_path: "../img/ui/";

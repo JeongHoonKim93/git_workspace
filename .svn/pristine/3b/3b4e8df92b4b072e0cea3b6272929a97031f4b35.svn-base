@@ -1,0 +1,145 @@
+@charset "utf-8";
+
+#msg_box {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+
+	.bg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		background: rgba(255,255,255,0.8);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ccffffff,endColorstr=#ccffffff);
+		zoom: 1;
+	}
+
+	.box {
+		display: none;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		border: 2px solid #262626;
+		background: #ffffff;
+
+		h2 {
+			padding: 10px;
+			background: #262626;
+			color: #ffffff;
+			line-height: 1;
+		}
+
+		.icons {
+			@mixin iconStyle(){
+				display: block;
+				width: 37px;
+				height: 36px;
+				margin: 0 auto;
+				background: url(#{$ui_img_path}ui_alert.png) no-repeat 0 0;
+			}
+			padding: 30px 0;
+
+			.icon_error{
+				@include iconStyle();
+				background-position: 0 0;
+			}
+			.icon_warning{
+				@include iconStyle();
+				background-position: -60px 0;
+			}
+			.icon_info{
+				@include iconStyle();
+				background-position: -120px 0;
+			}
+			.icon_question{
+				@include iconStyle();
+				width: 43px;
+				background-position: -177px 0;
+			}
+		}
+
+		.txts {
+			min-width: 150px;
+			padding: 0 80px 40px;
+			font-size: 15px;
+			text-align: center;
+
+			&.alone {
+				padding: 50px;
+			}
+		}
+
+		.btns {
+			padding:15px 70px;
+			margin-right:5px;
+			border-top:1px solid #ededed;
+			text-align:center;
+
+			&:last-child {
+				margin: 0;
+			}
+
+			> * {
+				margin-right: 5px;
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+
+			button {
+				@include inlineBlock();
+				position: relative;
+				padding: 0 20px;
+				box-sizing: border-box;
+				background: #646464;
+				color: #ffffff;
+				text-align: center;
+				line-height: 32px;
+				cursor: pointer;
+				outline: none;
+				//@include transition( .18 );
+
+				&:hover {
+					background: #000000;
+				}
+
+				> * {
+					display: block;
+
+					> * {
+						@include inlineBlock();
+						line-height: 14px;
+					}
+				}
+			}
+
+			@mixin btnType(){
+				@include inlineBlock();
+				width: 13px;
+				height: 12px;
+			}
+			.alert_ok {
+				@include btnType();
+				background-position: -41px -33px;
+			}
+			.alert_cancel {
+				@include btnType();
+				background-position: -64px -33px;
+			}
+			.alert_yes {
+				@include btnType();
+				background-position: 0 -33px;
+			}
+			.alert_no {
+				@include btnType();
+				background-position: -20px -33px;
+			}
+
+		}
+	}
+}

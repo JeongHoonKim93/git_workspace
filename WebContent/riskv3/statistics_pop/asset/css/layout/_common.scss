@@ -1,0 +1,295 @@
+@charset "utf-8";
+
+// Excel Process Container
+.excel_prc_container {
+	display: none;
+}
+
+// Content 공통
+#content {
+	> .ui_searchs {
+		position: relative;
+		min-width: $doc_wid;
+		border-bottom: 1px solid #c9c9c9;
+		background: #fbfbfb;
+        z-index: 1;
+        @include shadow( 0, 3px, 5px, 0.06, 0, 0, 0 );
+
+		&.fixed {
+			position: fixed;
+			width: 100%;
+		}
+
+		.btn_search_toggle {
+			position: absolute;
+			left: 50%;
+			bottom: -24px;
+			width: 35px;
+			height: 24px;
+			margin: 0 0 0 455px;
+			border: 1px solid #c9c9c9;
+			border-top: none;
+			background: #fbfbfb;
+			z-index: 1;
+			@include transition();
+
+			span {
+				display: block;
+				width: 10px;
+				height: 6px;
+				margin: 0 auto;
+				background: url(../img/ui/ui_btns_icon.png) no-repeat -60px -90px;
+				text-align: left;
+				text-indent: -9999px;
+			}
+
+			&.active {
+				span {
+					background-position: -60px -80px;
+				}
+			}
+		}
+
+		> .wrap {
+			width: $doc_wid;
+			margin: 0 auto;
+
+			// 검색 조건
+			> .searchs_inputs {
+				padding: 5px 0;
+
+				form {
+					> table {
+						width: 100%;
+
+						> tbody {
+							> tr {
+								> th {
+									position: relative;
+									padding: 5px 0 5px 8px;
+									color: #333333;
+									text-align: left;
+                                    line-height: 16px;
+                                    word-break: keep-all;
+
+									&:before {
+										content: '';
+										position: absolute;
+										top: 50%;
+										left: 0;
+										width: 2px;
+										height: 2px;
+										margin: -1px 0 0 -1px;
+										background: #333333;
+										color: #333333;
+									}
+								}
+
+								> td {
+									padding: 5px 2px;
+                                    line-height: 26px;
+									@include clearBoth();
+
+									&:last-child {
+										padding-right: 0;
+									}
+
+									> * {
+										float: left;
+										margin: 0 5px 0 0;
+
+										&:last-child {
+											margin-right: 0;
+										}
+									}
+                                }
+                                
+                                > th, > td {
+                                    border-bottom: 1px dashed #e0e0e0;
+                                }
+
+                                &:last-child {
+                                    > th, > td {
+                                        border-bottom: none;
+                                    }
+                                }
+							}
+						}
+					}
+				}
+			}
+
+			// 검색 결과
+			> .searchs_result {
+				display: none;
+				position: relative;
+				min-height: 30px;
+				padding: 3px 0 3px 80px;
+				margin: 0 auto;
+				line-height: 26px;
+
+				h3 {
+					position: absolute;
+					top: 5px;
+					left: 4px;
+				}
+
+				.lists {
+					@include clearBoth();
+
+					li {
+						float: left;
+						padding: 2px 8px 2px 0;
+
+						.item {
+							display: block;
+							padding: 0 10px;
+							background: #dadada;
+							color: #333333;
+							font-weight: bold;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	> .wrap {
+		position: relative;
+		width: $doc_wid;
+		padding: 30px 0;
+		margin: 0 auto;
+		z-index: 0;
+
+		> * {
+			padding-bottom: 20px;
+
+			&:last-child {
+				padding-bottom: 0;
+			}
+		}
+
+		> h2 {
+			position: relative;
+			padding-bottom: 20px !important;
+			color: #000000;
+			font-size: 2em;
+		}
+    }
+
+    // 정보량/감성 박스
+    .ui_volume_sentis {
+        text-align: center;
+
+        &.active {
+            background: #fce6e7;
+
+            .title {
+                color: $point_color;
+            }
+        }
+
+        > .title {
+            display: block;
+            padding: 40px 0 20px 0;
+            color: #333333;
+            font-size: 2.500em;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        > .volume {
+            @include inlineBlock();
+            padding: 0 20px;
+            border: 1px solid #c6c6c6;
+            border-radius: 100px;
+            background: #ffffff;
+            color: #333333;
+            font-size: 2em;
+            font-weight: bold;
+            line-height: 32px;
+            vertical-align: top;
+            @include transition();
+
+            &:after {
+                content: "건";
+                @include inlineBlock();
+                padding: 0 0 0 5px;
+                color: #999999;
+                font-size: 0.750em;
+                font-weight: normal;
+                line-height: 1.778em;
+                vertical-align: top;
+            }
+
+            &:hover {
+                background: #ededed;
+            }
+        }
+
+        > .fluc {
+            padding: 5px 0 35px;
+            color: #333333;
+            font-size: 14px;
+        }
+
+        > .sentis {
+            padding: 20px 0;
+            background: #f8f8f8;
+            @include clearBoth();
+
+            > * {
+                float: left;
+                width: 33%;
+                padding: 0 10px;
+                box-sizing: border-box;
+
+                &:nth-child(2) {
+                    width: 34%;
+                    border-left: 1px solid #e1e1e1;
+                    border-right: 1px solid #e1e1e1;
+                }
+
+                .title {
+                    display: block;
+                    padding: 0 0 8px 0;
+                    color: #333333;
+                    line-height: 14px;
+                }
+
+                a {
+                    .dv {
+                        font-size: 16px;
+                        line-height: 1.1em;
+                    }
+                }
+
+
+                &.positive {
+                    a {
+                        @include overUnderline( $font_senti_postive, $font_senti_postive );
+                        .dv {
+                            color: $font_senti_postive;
+                        }
+                    }
+                }
+                &.negative {
+                    a {
+                        @include overUnderline( $font_senti_negative, $font_senti_negative );
+                        .dv {
+                            color: $font_senti_negative;
+                        }
+                    }
+                }
+                &.neutral {
+                    a {
+                        @include overUnderline( $font_senti_neutral, $font_senti_neutral );
+                        .dv {
+                            color: $font_senti_neutral;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

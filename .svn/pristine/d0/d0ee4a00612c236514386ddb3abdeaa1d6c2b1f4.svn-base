@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+// Style
+#content.page-summary {
+
+    .ui_section {
+
+        >.wrap {
+
+            >.ui_row {
+                // padding-bottom: 8px !important;
+            }
+        }
+    }
+
+    .totals {
+        // width: 350px;
+        padding: 10px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        text-align: center;
+
+        >.title {
+            position: relative;
+            display: block;
+            padding: 35px 0 15px 0;
+            margin-bottom: 3px;
+            color: #555555;
+            line-height: 1;
+
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                width: 12px;
+                height: 2px;
+                background: #4f4f4f;
+                margin-left: -6px;
+            }
+        }
+
+        >.dv {
+            display: block;
+            padding: 0 0 18px 0;
+            color: #555555;
+            font-size: 60px;
+            line-height: 1;
+        }
+
+        >.ui_chart_wrap {
+            margin: 0 auto;
+        }
+
+        .ui_fluc {
+            background: #ffffff;
+            padding: 0 10px;
+            color: $font_color_hl2;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .sub_title {
+            display: block;
+            padding: 10px 0 4px 0;
+            color: $font_color_dm;
+            font-size: 0.857em;
+            line-height: 1;
+        }
+
+        .dv_before {
+            display: block;
+            line-height: 1;
+        }
+
+        .sentis_gage {
+            padding: 22px 0 0 0;
+
+            &+.ui_bubble_box {
+                margin-top: 55px !important;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .ui_autowrap {
+        margin-top: 30px;
+    }
+
+    .dcp_custom_select {
+
+        &+.dcp {
+            margin-left: 2px;
+        }
+    }
+
+    .ui_brd_list {
+        >.wrap {
+            table {
+                tbody {
+                    tr {
+                        td {
+                            .ui_btn {
+                                &:first-child {
+                                    margin-right: 6px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+}

@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+// Variables
+/* Style */
+#wrap {
+	&.login {
+		padding: 0;
+		background: none;
+
+		.wrap {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 580px;
+			margin: -160px 0 0 -290px;
+
+			h1 {
+				height:57px;padding:0 0 60px 0;background:url(../img/login/h1_logo.png) no-repeat center top;text-align:left;text-indent:-9999px;
+			}
+
+			.ui_box {
+				.box_content {
+					position: relative;
+					height: 200px;
+					padding: 50px 170px 0 50px;
+					box-sizing: border-box;
+
+					.row {
+						display: block;
+						position: relative;
+						padding-left: 80px;
+
+						&:first-child {
+							padding: 0 0 5px 80px;
+						}
+
+						label.inputs {
+							position: absolute;
+							top: 0;
+							left: 0;
+							color: #6d6d6d;
+							font-weight: bold;
+							line-height: 26px
+						}
+
+						&.remember_id {
+							padding: 20px 0 0 80px
+						}
+						&.remember_id label {
+							color: #6d6d6d;
+							font-size: 0.917em
+						}
+					}
+
+					.btn_login {
+						position: absolute;
+						top: 50px;
+						right: 50px;
+						width: 110px;
+						height: 69px;
+						font-size: 1.333em;
+						font-weight: bold
+					}
+				}
+			}
+		}
+
+		footer {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,12 @@
+[2022년05월06일 08시10분59초] 
+IOException :java.io.FileNotFoundException: https://bing.realsn.com/riskv3/report/issue_report_form_daily_CJ_2020.jsp?ir_type=D2&ir_sdate=2022-04-06&ir_edate=2022-05-06&ir_stime=17:00:00&ir_etime=17:59:59&id_seqs=13,16,11
+[2022년05월06일 08시12분20초] 
+IOException :java.io.FileNotFoundException: https://bing.realsn.com/riskv3/report/issue_report_form_daily_CJ_2020.jsp?ir_type=D2&ir_sdate=2022-04-06&ir_edate=2022-05-06&ir_stime=17:00:00&ir_etime=17:59:59&id_seqs=13,16,11,12
+[2022년05월06일 08시13분33초] 
+IOException :java.io.FileNotFoundException: https://bing.realsn.com/riskv3/report/issue_report_form_daily_bing_2022.jsp?ir_type=D2&ir_sdate=2022-04-06&ir_edate=2022-05-06&ir_stime=17:00:00&ir_etime=17:59:59&id_seqs=
+[2022년05월06일 08시22분42초] 
+IOException :java.io.FileNotFoundException: https://bing.realsn.com/riskv3/report/report_form_daily_bing.jsp?ir_type=D2&ir_sdate=2022-04-06&ir_edate=2022-05-06&ir_stime=17:00:00&ir_etime=17:59:59&id_seqs=13,16,11
+[2022년05월06일 08시24분31초] 
+IOException :java.net.ConnectException: Connection refused: connect
+[2022년05월06일 08시24분46초] 
+IOException :java.net.ConnectException: Connection refused: connect

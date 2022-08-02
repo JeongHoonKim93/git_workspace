@@ -1,0 +1,64 @@
+@charset "utf-8";
+
+// Style
+#wrap {
+	#container.p_voc {
+
+
+		// VOC 유형별 버즈량
+		.tops {
+			.box_content {
+				@include clearBoth();
+
+				.con_top_10 {
+					float: left;
+					width: 300px;
+					padding: 0 10px 0 0;
+				}
+				.con_top_20 {
+					float: left;
+					width: 300px;
+					padding: 0 9px;
+				}
+				.con_other {
+					float: right;
+					width: 300px;
+					padding: 0 0 0 10px;
+
+					> * {
+						margin-bottom: 20px;
+
+						&:last-child {
+							margin-bottom: 0;
+						}
+					}
+				}
+			}
+		}
+
+		// SNS 주요 이슈 빈도
+		.sns_issue {
+			.ui_brd_list {
+				thead {
+					th {
+						padding: 5px 2px !important;
+					}
+				}
+				tbody {
+					td {
+						padding: 10px 3px !important;
+
+						&.ui_al {
+							padding: 10px 6px !important;
+						}
+					}
+				}
+				tfoot {
+					th, td {
+						padding: 10px 2px !important;
+					}
+				}
+			}
+		}
+	}
+}

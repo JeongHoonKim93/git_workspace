@@ -1,0 +1,1 @@
+location.href = "../view/error/err_browser.jsp";

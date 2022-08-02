@@ -1,0 +1,98 @@
+@charset "utf-8";
+
+
+#locator {
+	> ul {
+		height: 60px;
+		@include clearBoth();
+
+		> li {
+			position: relative;
+			float: left;
+			padding: 0 5px 0 0;
+
+			&:not(:last-child) {
+				&:after {
+					content: '';
+					position: absolute;
+					top: 50%;
+					right: 0;
+					width: 5px;
+					height: 7px;
+					margin: -3px 0 0 0;
+					background: url(../img/ui/ui_locator.png) no-repeat -39px 0;
+				}
+			}
+			&.home {
+				> a {
+					display: block;
+					position: relative;
+					height: 60px;
+					padding: 0 20px 0 40px;
+					line-height: 60px;
+					transition: all .12s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+				}
+			}
+			&.item {
+				> button {
+					display: block;
+					position: relative;
+					height: 60px;
+					padding: 0 20px;
+					transition: all .12s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+				}
+			}
+			&:last-child {
+				> button {
+					font-size: 1.143em;
+					font-weight: bold;
+				}
+			}
+			&:hover {
+				> a, > button {
+					color: $point_color;
+				}
+				> .sub {
+					visibility: visible;
+					opacity: 1;
+					transition: all .12s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+				}
+			}
+
+			> .sub {
+				visibility: hidden;
+				position: absolute;
+				min-width: 100%;
+				background: rgba(0,0,0,0);
+				opacity: 0;
+				transition: all .12s cubic-bezier(0.420, 0.000, 0.580, 1.000);
+
+				.wrap {
+					max-height: 400px;
+					border: 1px solid #b5b5b5;
+					background: #ffffff;
+
+					ul {
+						li {
+							&:not(:last-child) {
+								border-bottom: 1px solid #dddddd;
+							}
+							a {
+								display: block;
+								position: relative;
+								padding: 15px 20px;
+								white-space: nowrap;
+								line-height: 1;
+								@include overUnderline( $font_color, $font_color, $point_color, false );
+
+								&.active {
+									color: $point_color;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

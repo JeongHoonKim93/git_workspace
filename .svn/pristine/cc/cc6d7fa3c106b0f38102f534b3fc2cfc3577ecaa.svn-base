@@ -1,0 +1,564 @@
+@charset "utf-8";
+
+.ui_treemap {
+	position: relative;
+	margin: 0 -1px -1px 0;
+
+	.treemap-node {
+		$nodeColor: #000000;
+		color: #ffffff;
+		padding: 4px;
+		// border: 1px solid transparent;
+		box-sizing: border-box;
+		overflow: hidden;
+		@include transition();
+
+		&:hover {
+			// background: #93000b !important;
+			// cursor: pointer;
+			// @include transition();
+
+			.overlay {
+				@include backgroundAlpha(#000000, .15);
+				// background: #5e4646;
+			}
+		}
+
+		.infos {
+			// display: block;
+			// color: #ffffff;
+			text-align: center;
+
+			.title {
+				display: block;
+				padding: 0 0 0 0;
+				color: #ffffff;
+				font-size: 1.667em;
+				line-height: 1;
+			}
+
+			.datas {
+				color: #ffffff;
+				font-size: 1em;
+
+				.dv {
+					@include inlineBlock();
+					line-height: 1.1em;
+				}
+
+				.fluc {
+					@include inlineBlock();
+					color: #ffffff;
+					line-height: 1.1em;
+				}
+			}
+
+			.per {
+				display: block;
+				padding: 5px 0 0 0;
+				color: #ffffff;
+				font-size: 11px;
+				text-align: center;
+				line-height: 1;
+			}
+
+			.ui_fluc {
+				position: static !important;
+			}
+		}
+
+		.overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			box-sizing: border-box;
+			@include backgroundAlpha(#000000, 0);
+			@include transition();
+
+			&+.treemap-item {
+				pointer-events: none;
+
+				.proper_st {
+					pointer-events: none;
+
+					>span {
+						position: relative;
+						font-size: 14px;
+
+						&.perc {
+							font-size: 12px;
+							font-weight: normal;
+							@include opacity(0.8);
+						}
+					}
+				}
+			}
+		}
+
+		&.full.hide {
+			.infos {
+				@include opacity(0);
+			}
+		}
+
+		&.hide {
+			>.treemap-item {
+				@include opacity(0);
+			}
+
+			// .infos {
+			// 	.title {
+			// 		padding: 0;
+			// 		font-size: 0.917em;
+			// 	}
+			// 	> *:not(.title) {
+			// 		display: none;
+			// 	}
+			// }
+		}
+
+		&.text-hide {
+			span {
+				@include opacity(0);
+			}
+		}
+
+		&.is-active {
+			.overlay {
+				background: rgba(0, 0, 0, 0.5);
+
+				&+.treemap-item {
+
+					* {
+						color: #ffffff !important;
+					}
+				}
+			}
+		}
+
+		@for $Loop1 from 1 through 10 {
+			$bg_alpha: ($Loop1 * 10) - 10;
+
+			&.share_#{$Loop1} {
+				background: lighten($nodeColor, $bg_alpha);
+			}
+		}
+	}
+
+	.treemap_bubble_wrap {
+		// display: block;
+		float: left;
+		height: 0;
+		zoom: 1;
+		pointer-events: none;
+
+
+		// Bubble Box
+		.bubble_box {
+			display: none;
+			position: absolute;
+			min-width: 100px;
+			float: none;
+			margin: 0 !important;
+			padding: 7px 10px 9px;
+			border: 1px solid #b3b3b3;
+			color: #4f4f4f;
+			background: #ffffff;
+			line-height: 1.3em;
+			text-align: center;
+			z-index: 11;
+			font-weight: bold;
+			box-sizing: border-box;
+			@include shadow(0, 0, 5px, 0.1, 0, 0, 0);
+
+			.row {
+				display: block;
+				font-size: 12px;
+				color: #4f4f4f;
+
+				>.percnt {
+					font-size: 11px;
+				}
+			}
+
+			>.wrap {
+				.infos {
+					font-size: 13px;
+					color: #4f4f4f;
+				}
+			}
+
+			&[data-fixed="true"] {
+				position: fixed;
+			}
+
+			.arrow {
+				position: absolute;
+				text-indent: -9999px;
+
+				&:before {
+					content: '';
+					position: absolute;
+					bottom: 2px;
+					left: 50%;
+					// margin: 0 0 0 -7px;
+					@include triangle("bottom", inherit, 8px, 7px)
+				}
+
+				&:after {
+					content: '';
+					position: absolute;
+					bottom: 4px;
+					left: 50%;
+					margin: 0 0 0 1px;
+					@include triangle("bottom", #ffffff, 6px, 5px)
+				}
+
+				// content: '';
+				// position: absolute;
+				// bottom: -11px;
+				// left: 50%;
+				// margin: 0 0 0 -7px;
+				// width: 0;
+				// height: 0;
+				// border: none;
+				// border-left: 7px solid transparent !important;
+				// border-right: 7px solid transparent !important;
+				// border-top: 12px solid #616161;
+				// text-indent: -9999px;
+				// @include inlineBlock();
+				// // position: absolute;
+				// // bottom: 0;
+				// // left: 0;
+				// // width: 14px;
+				// // height: 17px;
+				// // background: url(../img/ui/ui_bubble_arrows.png ) no-repeat 0 0;
+				// // @include textHidden();
+			}
+
+			.tip {
+				min-width: 150px;
+
+				.title {
+					display: block;
+					padding: 10px 10px 0;
+					color: #4f4f4f;
+				}
+
+				.txt {
+					display: block;
+					padding: 10px 10px 6px;
+					color: #4f4f4f;
+				}
+
+				.txt_v2 {
+					display: block;
+					padding: 6px 10px 10px;
+					background: #efefef;
+					color: #4f4f4f;
+					font-size: $fs_s_size;
+				}
+			}
+
+			.brd_info {
+				min-width: 150px;
+
+				.title {
+					display: block;
+					padding: 15px 20px;
+
+					&+.txt {
+						border-top: 1px solid $brd_color_dm;
+					}
+				}
+
+				.txt {
+					display: block;
+					padding: 15px 20px;
+					background: $font_color;
+				}
+
+				.hl {
+					color: #ff6c00;
+					font-weight: normal;
+				}
+			}
+
+			&[data-pos="LT"] {
+
+				// LEFT - TOP
+				.arrow {
+					bottom: -9px;
+					left: 10px;
+					background-position: -20px 0;
+				}
+			}
+
+			&[data-pos="RT"] {
+
+				// RIGHT - TOP
+				.arrow {
+					bottom: -9px;
+					right: 10px;
+					background-position: -20px 0;
+				}
+			}
+
+			&[data-pos="LB"] {
+
+				// LEFT - BOTTOM
+				.arrow {
+					top: -9px;
+					left: 10px;
+				}
+			}
+
+			&[data-pos="RB"] {
+
+				// RIGHT - BOTTOM
+				.arrow {
+					top: -9px;
+					right: 10px;
+				}
+			}
+
+			&[data-pos="CT"] {
+
+				// CENTER - TOP
+				.arrow {
+					bottom: -9px;
+					left: 50%;
+					margin: 0 0 0 -5px;
+					background-position: -20px 0;
+				}
+			}
+
+			&[data-pos="CB"] {
+
+				// CENTER - BOTTOM
+				.arrow {
+					top: -9px;
+					left: 50%;
+					margin: 0 0 0 -5px;
+				}
+			}
+
+			// .ui_btn + & {
+			// 	border: 1px solid $point_color;
+
+			// 	&[data-pos="LT"] {		// LEFT - TOP
+			// 		.arrow {
+			// 			background-position: -60px 0;
+			// 		}
+			// 	}
+			// 	&[data-pos="RT"] {		// RIGHT - TOP
+			// 		.arrow {
+			// 			background-position: -60px 0;
+			// 		}
+			// 	}
+			// 	&[data-pos="LB"] {		// LEFT - BOTTOM
+			// 		.arrow {
+			// 			background-position: -40px 0;
+			// 		}
+			// 	}
+			// 	&[data-pos="RB"] {		// RIGHT - BOTTOM
+			// 		.arrow {
+			// 			background-position: -40px 0;
+			// 		}
+			// 	}
+			// 	&[data-pos="CT"] {		// CENTER - TOP
+			// 		.arrow {
+			// 			background-position: -60px 0;
+			// 		}
+			// 	}
+			// 	&[data-pos="CB"] {		// CENTER - BOTTOM
+			// 		.arrow {
+			// 			background-position: -40px 0;
+			// 		}
+			// 	}
+			// }
+		}
+
+		// .ui_bubble_box {
+
+
+		// 	.wrap {
+		// 		padding: 15px 30px;
+
+		// 		.title {
+		// 			display: block;
+		// 			padding: 0 0 15px 0;
+		// 			font-size: 1.667em;
+		// 			line-height: 1;
+		// 			text-align: center;
+		// 			white-space: nowrap;
+		// 		}
+
+		// 		.datas {
+		// 			display:block;
+		// 			font-size: 0.917em;
+		// 			text-align: center;
+
+		// 			.dv {
+		// 				@include inlineBlock();
+		// 				line-height: 1.1em;
+		// 			}
+
+		// 			.fluc {
+		// 				@include inlineBlock();
+		// 				line-height: 1.1em;
+		// 			}
+		// 		}
+
+		// 		.per {
+		// 			display: block;
+		// 			padding: 5px 0 0 0;
+		// 			text-align: center;
+		// 			line-height: 1;
+		// 		}
+		// 	}
+		// }
+	}
+}
+
+// @charset "utf-8";
+
+// .ui_treemap {
+// 	margin: 0 -1px -1px 0;
+
+// 	.treemap-node {
+// 		$nodeColor: #333333;
+
+// 		box-sizing: border-box;
+// 		@include transition();
+
+// 		&:hover {
+// 			background: $point_color !important;
+// 			@include transition();
+// 		}
+
+// 		.infos {
+// 			display: block;
+// 			color: #ffffff;
+// 			text-align: center;
+
+// 			.title {
+// 				display: block;
+// 				padding: 0 0 15px 0;
+// 				color: #ffffff;
+// 				font-size: 1.667em;
+// 				line-height: 1;
+// 			}
+
+// 			.datas {
+// 				color: #ffffff;
+// 				font-size: 0.917em;
+
+// 				.dv {
+// 					@include inlineBlock();
+// 					line-height: 1.1em;
+// 				}
+
+// 				.fluc {
+// 					@include inlineBlock();
+// 					color: #ffffff;
+// 					line-height: 1.1em;
+// 				}
+// 			}
+
+// 			.per {
+// 				display: block;
+// 				padding: 5px 0 0 0;
+// 				color: #ffffff;
+// 				text-align: center;
+// 				line-height: 1;
+// 			}
+// 		}
+
+// 		.overlay {
+// 			position: absolute;
+// 			top: 0;
+// 			left: 0;
+// 			width: 100%;
+// 			height: 100%;
+// 			box-sizing: border-box;
+// 			@include backgroundAlpha(#000000, 0);
+// 			@include transition();
+// 		}
+
+// 		&.full.hide {
+// 			.infos {
+// 				display: none;
+// 			}
+// 		}
+// 		&.hide {
+// 			.infos {
+// 				.title {
+// 					padding: 0;
+// 					font-size: 0.917em;
+// 				}
+// 				> *:not(.title) {
+// 					display: none;
+// 				}
+// 			}
+// 		}
+
+// 		&.active {
+// 			.overlay {
+// 				border: 3px solid #de242b;
+// 			}
+// 		}
+
+// 		@for $Loop1 from 1 through 10 {
+// 			$bg_alpha: ( $Loop1 * 6 ) - 6;
+// 			&.share_#{$Loop1} {
+// 				background: lighten( $nodeColor, $bg_alpha );
+// 			}
+// 		}
+// 	}
+
+// 	.treemap_bubble_wrap {
+// 		display: block;
+// 		float: left;
+// 		height: 0;
+// 		zoom: 1;
+// 		pointer-events: none;
+
+// 		.ui_bubble_box {
+// 			.wrap {
+// 				padding: 15px 30px;
+
+// 				.title {
+// 					display: block;
+// 					padding: 0 0 15px 0;
+// 					font-size: 1.667em;
+// 					line-height: 1;
+// 					white-space: nowrap;
+// 				}
+
+// 				.datas {
+// 					font-size: 0.917em;
+
+// 					.dv {
+// 						@include inlineBlock();
+// 						line-height: 1.1em;
+// 					}
+
+// 					.fluc {
+// 						@include inlineBlock();
+// 						line-height: 1.1em;
+// 					}
+// 				}
+
+// 				.per {
+// 					display: block;
+// 					padding: 5px 0 0 0;
+// 					text-align: center;
+// 					line-height: 1;
+// 				}
+// 			}
+// 		}
+// 	}
+// }

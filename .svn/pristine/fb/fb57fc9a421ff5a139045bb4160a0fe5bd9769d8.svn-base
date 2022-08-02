@@ -1,0 +1,186 @@
+@charset "utf-8";
+
+
+
+#aside {
+	position: relative;
+	background: url(#{$ui_img_path}bg_aside.png) repeat-y 0 0;
+	z-index: 20;
+
+	.user_infos {
+		height: 85px;
+		padding: 36px 15px 0 20px;
+		border-bottom: 1px solid #d0d0d0;
+		box-sizing: border-box;
+		@include clearBoth();
+
+		.user {
+			position: relative;
+			float: left;
+			padding: 0 0 0 33px;
+			color: #727272;
+			font-weight: bold;
+			line-height: 1;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 24px;
+				height: 24px;
+				margin: -12px 0 0 0;
+				background: url(#{$ui_img_path}ui_icons.png) no-repeat 0 -20px;
+
+			}
+		}
+		.btns {
+			float: right;
+			@include clearBoth();
+
+			> * {
+				float: left;
+				width: 12px;
+				height: 12px;
+				@include textHidden();
+
+				&.btn_setting {
+					display: none;
+					margin: 0 10px 0 0;
+					background: url(#{$ui_img_path}ui_btns_icon.png) no-repeat 0 -175px;
+
+				}
+				&.btn_log {
+					background: url(#{$ui_img_path}ui_btns_icon.png) no-repeat -22px -175px;
+
+				}
+				&:hover {
+					background-position-y: -197px;
+
+				}
+			}
+		}
+	}
+
+	nav {
+		width: $aside_wid - 1px;
+
+		ul{
+			color: #999999;
+		}
+		> ul > li {
+			position: relative;
+			border-bottom: 1px solid $brd_color;
+
+			&.active {
+				border-left: 4px solid #2255b4;
+			}
+			> a {
+				display: block;
+				position: relative;
+				padding: 15px 35px 15px 20px;
+				background: #f7f7f7;
+				color: #222222;
+				font-size: 1.167em;
+				font-weight: bold;
+				line-height: 1.2em;
+				@include transition();
+				@include overUnderline( #222222, #222222, $point_color, false );
+
+				> span {
+					@include inlineBlock();
+					position: relative;
+					padding: 1px 0;
+				}
+				&.has_sub {
+					&:after {
+						content: '';
+						position: absolute;
+						top: 50%;
+						right: 20px;
+						width: 5px;
+						height: 5px;
+						margin: -4px 0 0 0;
+						border-top: 2px solid #222222;
+						border-left: 2px solid #222222;
+						@include rotate( 315 );
+						@include transition();
+					}
+					&:hover {
+						&:after {
+							@include opacity( 1 );
+						}
+					}
+					&.expanded {
+						&:after {
+							@include rotate( 225 );
+						}
+					}
+				}
+				&.active {
+					background: #fff1f3;
+					color: $point_color;
+
+					&.has_sub {
+						&:after {
+							border-color: $point_color;
+						}
+						&.expanded {
+							&:after {
+								border-color: $point_color;
+							}
+						}
+					}
+				}
+			}
+			> .sub {
+				height: 0;
+				overflow: hidden;
+
+				> ul {
+					border-top: 1px dotted #c5c5c5;
+
+					> li {
+						&:not(:last-child) {
+							border-bottom: 1px dotted #c5c5c5;
+						}
+						> a {
+							display: block;
+							position: relative;
+							padding: 11px 35px 11px 46px;
+							color: #575757;
+							font-size: 1.167em;
+							line-height: 1.2em;
+							@include transition();
+							@include overUnderline( #575757, #575757, $point_color, false );
+
+							> span {
+								@include inlineBlock();
+								position: relative;
+								padding: 1px 0;
+							}
+							&:before {
+								content: '';
+								position: absolute;
+								top: 50%;
+								left: 33px;
+								width: 4px;
+								height: 2px;
+								margin: -1px 0 0 0;
+								background: #575757;
+								@include transition();
+							}
+							&.active {
+								color: $point_color;
+
+								&:before {
+									background: $point_color;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,409 @@
+@charset "utf-8";
+
+// 버튼 - 기본형
+.ui_btn {
+	@include inlineBlock();
+	position: relative;
+	//min-width: 80px;
+	height: 28px;
+    padding: 0 12px;
+    border: 1px solid $component_back;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: $component_back;
+    color: $component_font;
+	text-align: center;
+    line-height: 26px;
+    vertical-align: top;
+	cursor: pointer;
+    outline: none;
+    @include transition();
+
+	> * {
+        @include inlineBlock();
+        position: relative;
+        color: inherit;
+        vertical-align: top;
+    }
+
+    &:hover {
+        border: 1px solid $component_brd_color;
+        color: $component_font;
+    }
+
+	&:not([disabled]).is-active, &:active {
+        border-color:  $component_active_color;
+        background:  $component_active_color;
+        color: #ffffff;
+
+		> .txt {
+			color: #ffffff;
+		}
+	}
+
+	&[disabled], &.is-disabled {
+        border-color: $component_brd_color;
+        background: #f3f3f3;
+        color: #c0c0c0 !important;
+		cursor: default;
+        
+        .txt {
+            text-decoration: line-through;
+        }
+    }
+    
+    .icon {
+        font-family: 'icomoon';
+        color: inherit;
+        font-size: 1.143em;
+        line-height: 26px;
+    }
+
+	// Loading
+	.in_loader {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 0;
+		border-radius: 7px;
+		background: url(http://design.realsn.com/design_asset/vue/assets/img/ui/ui_loader_01_small.gif) no-repeat center center;
+		text-align: left;
+		text-indent: -9999px;
+		visibility: hidden;
+		@include opacity( 0 );
+		@include transition();
+		@include shadow( 1px, 1px, 2px, 0.1 );
+	}
+	&.is-loading {
+		path {
+			fill: #ffffff !important;
+		}
+		
+		.in_loader {
+			top: -7px;
+			left: -4px;
+			width: 15px;
+			height: 15px;
+			visibility: visible;
+			@include opacity( 1 );
+		}
+	}
+
+	// 버튼 - black
+	&.is-color-blk {		// 기본 포인트 색상
+
+		&:active, &.is-active {
+			border: 1px solid $component_active_color_hl;
+			background: $component_active_color_hl;
+			color: #ffffff;
+		}
+
+		&[disabled] {
+			border: 1px solid #f3f3f3;
+			background: #f3f3f3;
+			color: #c0c0c0;
+			@include shadow( 0, 0, 0, 0, 0, 0, 0 );
+		}
+    }
+
+	// 버튼 - white
+	&.is-color-wht {		// 기본 포인트 색상
+		background: #ffffff;
+		border-color: $brd_color_dm;
+		color: #555555;
+		
+		&:hover {
+			background: $component_back;
+			border-color: $brd_color_dm;
+			color: #555555;
+		}
+
+		&:not([disabled]).is-active, &:active {
+			border-color:  $component_active_color;
+			background:  $component_active_color;
+			color: #ffffff;
+	
+			> .txt {
+				color: #ffffff;
+			}
+		}
+	
+		&[disabled] {
+			border: 1px solid #f3f3f3;
+			background: #f3f3f3;
+			color: #c0c0c0;
+			@include shadow( 0, 0, 0, 0, 0, 0, 0 );
+		}
+    }
+
+	/*
+	&.is-color-gray {		// 기본 포인트 색상
+		border: 1px solid $font_color;
+		background: $font_color;
+		color: #ffffff;
+
+		&:hover, &:focus:not([disabled]):not(.is-active) {
+			border: 1px solid darken( $font_color, 18 );
+			background: darken($font_color, 12 );
+			color: #ffffff;
+		}
+
+		&:active, &.is-active {
+			border: 1px solid darken( $font_color, 30 );
+			background: darken( $font_color, 20 );
+			color: #ffffff;
+			@include shadow( 0, 0, 0, 0, 0, 0, 0 );
+		}
+
+		&[disabled] {
+			border: 1px solid #f3f3f3;
+			background: #f3f3f3;
+			color: #c0c0c0;
+			@include shadow( 0, 0, 0, 0, 0, 0, 0 );
+		}
+    }
+	*/
+    
+    // 아이콘 With
+    &.is-icon-with {
+        height: 30px;
+        padding: 6px;
+        line-height: 16px;
+
+        &.is-before {
+            > .icon {
+                margin-right: 4px;
+            }
+        }
+
+        &.is-after {
+            > .icon {
+                margin-left: 4px;
+            }
+        }
+
+        > .icon {
+            width: 12px;
+            height: 16px;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        &.is-active {
+			path {
+				fill: $point_color;
+			}
+		}
+    }
+
+	// 아이콘 Only
+	&.is-icon-only {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+		border-radius: 50%;
+		text-align: center;
+
+		> .icon {
+			width: 26px;
+            height: 26px;
+		}
+		
+		&:active, &.is-active {
+			border: 1px solid $component_active_color_hl;
+			background: $component_active_color_hl;
+			color: #ffffff;
+		}
+    }
+	
+
+	&.is-no-bd {
+		border: transparent;
+		
+		&:hover, &:focus:not([disabled]):not(.is-active) {
+			border: transparent;
+			background: transparent;
+			color: #505050;
+		}
+	}
+	
+	&.is-small {
+		height: 24px;
+		line-height: 22px;
+
+		&.is-icon-only {
+			width: 24px;
+			padding: 0;
+
+			> .icon {
+				width: 22px;
+				height: 22px;
+				line-height: 22px;
+				font-size: 12px;
+			}
+		}
+	}
+
+	&.is-large {
+		height: 30px;
+		line-height: 28px;
+
+		&.is-icon-only {
+			width: 30px;
+			padding: 0;
+
+			> .icon {
+				width: 28px;
+				height: 28px;
+				line-height: 28px;
+				font-size: 14px;
+			}
+		}
+	}
+
+	&.xsmall {
+		height: 20px;
+
+		&.is-icon-only {
+			width: 20px;
+			padding: 0;
+
+			> .icon {
+				width: 19px;
+				height: 18px;
+				line-height: 18px;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+// toggle
+.ui_toggle_btn {
+	&+ .ui_toggle_box {
+		visibility: hidden;
+		@include opacity( 0 );
+	}
+	&.active {
+		&+ .ui_toggle_box {
+			visibility: visible;
+			@include opacity( 1 );
+		}
+	}
+}
+
+
+// 버튼 - 작은 아이콘형
+.ui_mini_btn {
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border: 1px solid $brd_color_dm;
+	background: #ffffff;
+	box-sizing: border-box;
+	color: #666666 !important;
+	font-size: 12px;
+	line-height: 18px;
+	cursor: pointer;
+	@include transition();
+
+	.icon {
+		@include inlineBlock();
+		width: 10px;
+		height: 18px;
+		margin: 0 auto;
+		background: url(#{$ui_img_path}ui_btns_icon.png) no-repeat 0 0;
+		text-align: left;
+		text-indent: -9999px;
+
+		// 다운로드
+		&.download {
+			background-position: 0 -48px;
+		}
+
+		// 검색
+		&.search {
+			width: 10px;
+			background-position: -30px -48px;
+		}
+
+		// 말풍선
+		&.bubble {
+			width: 12px;
+			background-position: -60px -48px;
+		}
+
+		// 플러스
+		&.plus {
+			background-position: -90px -48px;
+		}
+
+		// 마이너스
+		&.minus {
+			background-position: -120px -48px;
+		}
+
+		// 등록
+		&.add {
+			background-position: -150px -48px;
+		}
+
+		// 설정
+		&.setting {
+			background-position: -180px -48px;
+		}
+
+		// 확인
+		&.confirm {
+			background-position: -210px -48px;
+		}
+
+		// 삭제
+		&.delete {
+			background-position: -240px -48px;
+		}
+
+		// 리스트
+		&.list {
+			background-position: -270px -48px;
+		}
+
+		// 차트(바)
+		&.chart_bar {
+			width: 11px;
+			background-position: -300px -48px;
+		}
+	}
+
+	// Loading
+	.in_loader {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 0;
+		border-radius: 7px;
+		background: url(#{$ui_img_path}ui_loader_01_xsmall.gif) no-repeat center center;
+		text-align: left;
+		text-indent: -9999px;
+		visibility: hidden;
+		@include opacity( 0 );
+		@include transition();
+		@include shadow( 1px, 1px, 2px, 0.1 );
+	}
+	&.loading {
+		.in_loader {
+			top: -6px;
+			left: -6px;
+			width: 12px;
+			height: 12px;
+			visibility: visible;
+			@include opacity( 1 );
+		}
+	}
+
+	&:hover, &.active {
+		border: 1px solid #000000;
+	}
+}

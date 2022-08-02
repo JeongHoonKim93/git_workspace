@@ -1,0 +1,1043 @@
+@charset "utf-8";
+
+// Style
+#content.page-brand {
+    .summary {
+        @include clearBoth();
+
+        > * {
+            > .wrap {
+                display: table;
+                width: 100px;
+                table-layout: fixed;
+
+                > ul {
+                    display: table-row;
+
+                    > li {
+                        display: table-cell;
+
+                        &:not(:first-child) {
+                            // margin-left: -1px;
+                        }
+    
+                        > .item {
+                            border: 1px solid #e9e9e9;
+                            background: #ffffff;
+                            overflow: hidden;
+            
+                            > .infos {
+                                background: #ffffff;
+                            }
+                            > .sub_infos {
+                                position: relative;
+                                padding: 7px 10px 10px;
+                                background: #f1f1f1;
+                                text-align: center;
+            
+                                input {
+                                    @include customComponent();
+            
+                                    & + label {
+                                        @include inlineBlock();
+                                        width: 80px;
+                                        border: 1px solid #dadada;
+                                        background: #ffffff;
+                                        line-height: 30px;
+                                        text-align: center;
+                                        cursor: pointer;
+                                        @include transition(.3);
+            
+                                        &:nth-child(2) {
+                                            border-right: none;
+                                            border-radius: 50px 0 0 50px;
+                                        }
+                                        &:nth-child(4) {
+                                            border-left: none;
+                                            border-radius: 0 50px 50px 0;
+                                        }
+                                    }
+            
+                                    &:hover {
+                                        & + label {
+                                            border-color: #808080;
+                                            background: #efefef;
+                                            color: #505050;
+                                        }
+                                    }
+                                    &:checked {
+                                        & + label {
+                                            border-color: #7f7f7f;
+                                            background: #7f7f7f;
+                                            color: #ffffff;
+                                        }
+                                    }
+                                }
+            
+                                input[type=radio]:nth-child(3) {
+                                    &:checked {
+                                        & + label + .wrap > .buz {
+                                            margin-left: -100%;
+                                        }
+                                    }
+                                }
+            
+                                > .wrap {
+                                    display: block;
+                                    width: 100%;
+                                    padding: 5px 0 0 0;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+            
+                                    > .buz {
+                                        @include inlineBlock();
+                                        width: 100%;
+                                        height: 416px;
+                                        margin-left: 0;
+                                        vertical-align: top;
+                                        @include transition( 0.3 );
+            
+                                        > ul {
+                                            > li {
+                                                &:not(:first-child) {
+                                                    padding: 5px 0 0 0;
+                                                }
+            
+                                                > .item {
+                                                    position: relative;
+                                                    height: 100px;
+                                                    padding: 28px 10px 0;
+                                                    border-radius: 4px;
+                                                    background: #ffffff;
+                                                    box-sizing: border-box;
+                                                    overflow: hidden;
+                                                    @include clearBoth();
+    
+                                                    &:empty {
+                                                        background: #f9f9f9;
+                                                    }
+    
+                                                    > * {
+                                                        box-sizing: border-box;
+                                                    }
+            
+                                                    .type {
+                                                        float: left;
+                                                        width: 60%;
+                                                        height: 16px;
+                                                        line-height: 1;
+                                                        text-align: left;
+                                                    }
+                                                    .senti {
+                                                        float: right;
+                                                        max-width: 40%;
+                                                        padding: 0 5px;
+                                                        border-radius: 50px;
+                                                        background: #aaaaaa;
+                                                        color: #ffffff;
+                                                        font-size: 0.857em;
+                                                        line-height: 16px;
+                                                        text-align: right;
+            
+                                                        &.is-positive {
+                                                            background: $font-senti-positive;
+                                                        }
+                                                        &.is-negative {
+                                                            background: $font-senti-negative;
+                                                        }
+                                                        &.is-neutral {
+                                                            background: $font-senti-neutral;
+                                                        }
+                                                    }
+                                                    .volume {
+                                                        float: left;
+                                                        width: 60%;
+                                                        padding: 6px 0 0 0;
+                                                        color: $font_color_hl2;
+                                                        font-size: 1.286em;
+                                                        font-weight: bold;
+                                                        text-align: left;
+                                                        line-height: 1;
+                                                    }
+                                                    .ui_fluc {
+                                                        float: right;
+                                                        max-width: 40%;
+                                                        padding: 8px 0 0 0;
+                                                        line-height: 1;
+                                                        text-align: right;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    > .cate {
+                                        @include inlineBlock();
+                                        width: 100%;
+                                        height: 416px;
+                                        vertical-align: top;
+            
+                                        > ul {
+                                            > li {
+                                                &:not(:first-child) {
+                                                    padding: 5px 0 0 0;
+                                                }
+            
+                                                &:first-child {
+                                                    .item {
+                                                        height: 95px;
+                                                    }
+                                                }
+            
+                                                > .item {
+                                                    position: relative;
+                                                    height: 75px;
+                                                    padding: 10px;
+                                                    border-radius: 4px;
+                                                    background: #ffffff;
+                                                    box-sizing: border-box;
+                                                    overflow: hidden;
+                                                    text-align: center;
+    
+                                                    &:empty {
+                                                        background: #f9f9f9;
+                                                    }
+    
+                                                    .category {
+                                                        display: block;
+                                                        font-size: 0.857em;
+                                                        line-height: 1;
+                                                        overflow: hidden;
+                                                        white-space: nowrap;
+                                                        text-overflow: ellipsis;
+                                                    }
+                                                    .pdt {
+                                                        display: block;
+                                                        padding: 7px 5px 3px;
+                                                        color: $font_color_hl2;
+                                                        font-weight: bold;
+                                                        text-align: center;
+                                                        line-height: 1;
+                                                        overflow: hidden;
+                                                        white-space: nowrap;
+                                                        text-overflow: ellipsis;
+                                                    }
+                                                    .volume {
+                                                        width: 100%;
+                                                        padding: 4px 0 0 0;
+                                                        text-align: center;
+                                                        line-height: 1;
+                                                    }
+                                                    .ui_fluc {
+                                                        max-width: 65px;
+                                                        height: 16px;
+                                                        padding: 0 5px;
+                                                        border-radius: 50px;
+                                                        background: #f0f0f0;
+                                                        font-size: 0.857em;
+                                                        line-height: 16px;
+                                                        text-align: left;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        > .homecc {
+            float: left;
+            width: 276px;
+
+            > .wrap {
+                > ul {
+                    > li {
+                        width: 276px;
+
+                        > .item {
+                            border-color: $point_color;
+                            border-radius: 4px;
+            
+                            > .infos {
+                                height: 248px;
+                                padding: 30px 20px 0;
+                                box-sizing: border-box;
+                                text-align: center;
+                
+                                .title {
+                                    display: block;
+                                    padding: 0 0 10px;
+            
+                                    > img {
+                                        display: block;
+                                        margin: 0 auto;
+                                    }
+                                }
+                                .senti {
+                                    display: block;
+                                    position: relative;
+                                    width: 110px;
+                                    height: 110px;
+                                    padding: 69px 0 0 0;
+                                    margin: 0 auto;
+                                    border-radius: 50%;
+                                    background: $font-senti-neutral;
+                                    box-sizing: border-box;
+                                    color: #ffffff;
+                                    font-size: 1.286em;
+                                    line-height: 1;
+            
+                                    &:before {
+                                        content: '\e014';
+                                        position: absolute;
+                                        top: 30px;
+                                        left: 0;
+                                        width: 100%;
+                                        font-family: 'icomoon';
+                                        color: #ffffff;
+                                        font-size: 32px;
+                                        text-align: center;
+                                    }
+            
+                                    &.is-positive {
+                                        background: $font-senti-positive;
+            
+                                        &:before {
+                                            content: '\e012';
+                                        }
+                                    }
+                                    &.is-negative {
+                                        background: $font-senti-negative;
+            
+                                        &:before {
+                                            content: '\e013';
+                                        }
+                                    }
+                                    &.is-neutral {
+                                        background: $font-senti-neutral;
+            
+                                        &:before {
+                                            content: '\e014';
+                                        }
+                                    }
+                                }
+                                .cnt {
+                                    display: block;
+                                    padding: 15px 0 12px;
+                                    line-height: 1;
+            
+                                    &:before {
+                                        content: '정보량 : '
+                                    }
+                                }
+                                .ui_fluc {
+                                    padding: 0 10px;
+                                    border-radius: 50px;
+                                    background: #f0f0f0;
+                                    font-size: 12px;
+                                    line-height: 20px;
+                                }
+                            }
+            
+                            > .sub_infos {
+                                > .wrap {
+                                    display: block;
+                                    width: 100%;
+                                    padding: 5px 0 0 0;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+            
+                                    > .buz {
+                                        @include inlineBlock();
+                                        width: 100%;
+                                        height: 416px;
+                                        vertical-align: top;
+                                        @include transition( 0.3 );
+            
+                                        > ul {
+                                            > li {
+                                                &:not(:first-child) {
+                                                    padding: 5px 0 0 0;
+                                                }
+            
+                                                > .item {
+                                                    position: relative;
+                                                    height: 100px;
+                                                    padding: 28px 10px 0;
+                                                    border-radius: 4px;
+                                                    background: #ffffff;
+                                                    box-sizing: border-box;
+                                                    overflow: hidden;
+                                                    @include clearBoth();
+    
+                                                    > * {
+                                                        box-sizing: border-box;
+                                                    }
+            
+                                                    .type {
+                                                        float: left;
+                                                        width: 60%;
+                                                        height: 16px;
+                                                        line-height: 1;
+                                                        text-align: left;
+                                                    }
+                                                    .senti {
+                                                        float: right;
+                                                        max-width: 40%;
+                                                        padding: 0 5px;
+                                                        border-radius: 50px;
+                                                        background: #aaaaaa;
+                                                        color: #ffffff;
+                                                        font-size: 0.857em;
+                                                        line-height: 16px;
+                                                        text-align: right;
+            
+                                                        &.is-positive {
+                                                            background: $font-senti-positive;
+                                                        }
+                                                        &.is-negative {
+                                                            background: $font-senti-negative;
+                                                        }
+                                                        &.is-neutral {
+                                                            background: $font-senti-neutral;
+                                                        }
+                                                    }
+                                                    .volume {
+                                                        float: left;
+                                                        width: 60%;
+                                                        padding: 6px 0 0 0;
+                                                        color: $font_color_hl2;
+                                                        font-size: 1.286em;
+                                                        font-weight: bold;
+                                                        text-align: left;
+                                                        line-height: 1;
+                                                    }
+                                                    .ui_fluc {
+                                                        float: right;
+                                                        max-width: 40%;
+                                                        padding: 8px 0 0 0;
+                                                        line-height: 1;
+                                                        text-align: right;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    > .cate {
+                                        @include inlineBlock();
+                                        width: 100%;
+                                        height: 416px;
+                                        vertical-align: top;
+            
+                                        > ul {
+                                            > li {
+                                                &:first-child {
+                                                    > .item {
+                                                        padding: 15px 10px;
+    
+                                                        .pdt {
+                                                            padding: 6px 0;
+                                                            font-size: 1.429em;
+                                                        }
+                                                    }
+                                                }
+    
+                                                > .item {
+                                                    .pdt {
+                                                        font-size: 1.143em;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        > .other {
+            float: right;
+            width: 866px;
+            padding: 0 0 5px 0;
+            border: 1px solid #e9e9e9;
+            border-radius: 4px;
+            box-sizing: border-box;
+            overflow-x: scroll;
+
+            > .wrap {
+                > ul {
+                    > li {
+                        width: 216px;
+                        vertical-align: top;
+                        overflow: hidden;
+
+                        &:not(:first-child) {
+                            border-left: 1px solid #e9e9e9;
+                        }
+    
+                        > .item {
+                            border: none;
+
+                            > .infos {
+                                position: relative;
+                                height: 248px;
+                                padding: 0;
+                                box-sizing: border-box;
+                                text-align: center;
+    
+                                .category {
+                                    display: block;
+                                    height: 12px;
+                                    padding: 30px 10px 0;
+                                    font-size: 0.857em;
+                                    line-height: 1;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                }
+                                .title {
+                                    display: block;
+                                    padding: 10px 10px 20px;
+                                    color: $font_color_hl2;
+                                    font-size: 1.429em;
+                                    font-weight: normal;
+                                    line-height: 1;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                }
+                                .senti {
+                                    padding: 0 5px;
+                                    border-radius: 50px;
+                                    background: #aaaaaa;
+                                    color: #ffffff;
+                                    font-size: 0.857em;
+                                    line-height: 16px;
+                                    text-align: right;
+    
+                                    &.is-positive {
+                                        background: $font-senti-positive;
+                                    }
+                                    &.is-negative {
+                                        background: $font-senti-negative;
+                                    }
+                                    &.is-neutral {
+                                        background: $font-senti-neutral;
+                                    }
+                                }
+                                .share {
+                                    display: block;
+                                    padding: 15px 0 0 0;
+                                    color: $font_color_hl2;
+                                    font-size: 2.571em;
+                                    font-weight: bold;
+                                    line-height: 1;
+    
+                                    &:after {
+                                        content: '%';
+                                        color: $font_color;
+                                        font-weight: normal;
+                                    }
+                                }
+                                .cnt {
+                                    display: block;
+                                    padding: 10px 0 10px;
+                                    line-height: 1;
+            
+                                    &:before {
+                                        content: '정보량 : '
+                                    }
+                                }
+                                .ui_fluc {
+                                    padding: 0 10px;
+                                    border-radius: 50px;
+                                    background: #f0f0f0;
+                                    font-size: 12px;
+                                    line-height: 20px;
+                                }
+                            }
+    
+                            > .sub_infos {
+                                input {
+                                    display: none;
+            
+                                    & + label {
+                                        max-width: 0;
+                                        border: none !important;
+                                        background: none !important;
+                                        color: $font_color_hl !important;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        cursor: default;
+                                        pointer-events: none;
+    
+                                        > .txt {
+                                            position: relative;
+    
+                                            &:before {
+                                                content: '';
+                                                position: absolute;
+                                                left: 0;
+                                                bottom: -3px;
+                                                width: 100%;
+                                                height: 4px;
+                                                background: #bebebe;
+                                            }
+                                        }
+    
+                                    }
+                                    &:checked {
+                                        & + label {
+                                            max-width: 90px;
+                                        }
+                                    }
+                                }
+    
+                                > .wrap {
+                                    > .cate {
+                                        > ul {
+                                            > li {
+                                                &:first-child {
+                                                    > .item {
+                                                        .pdt {
+                                                            padding: 7px 0 0 0;
+                                                            font-size: 1.286em;
+                                                        }
+                                                    }
+                                                }
+    
+                                                > .item {
+                                                    .pdt {
+                                                        padding: 0;
+                                                    }
+                                                    .volume {
+                                                        display: block;
+                                                        padding: 5px 0;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.is-brands {
+            > * {
+                > .wrap {
+                    > ul {
+                        > li {
+                            > .item {
+                                > .infos {
+                                    padding: 0;
+
+                                    .title {
+                                        display: block;
+                                        padding: 25px 10px 15px;
+                                        color: $font_color_hl2;
+                                        font-size: 1.429em;
+                                        font-weight: normal;
+                                        line-height: 1;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+
+                                        img {
+                                            @include inlineBlock();
+                                            vertical-align: top;
+                                        }
+                                    }
+
+                                    .senti {
+                                        @include inlineBlock();
+                                        width: auto;
+                                        height: auto;
+                                        padding: 0 5px;
+                                        margin: 0 auto;
+                                        border-radius: 100px;
+                                        font-size: 0.857em;
+                                        line-height: 18px;
+                                        vertical-align: top;
+                
+                                        &:before {
+                                            content: none !important;
+                                        }
+                                    }
+
+                                    .share {
+                                        display: block;
+                                        padding: 15px 0 0 0;
+                                        color: $font_color_hl2;
+                                        font-size: 2.571em;
+                                        font-weight: bold;
+                                        line-height: 46px;
+        
+                                        &:after {
+                                            content: '%';
+                                            color: $font_color;
+                                            font-weight: normal;
+                                        }
+                                    }
+
+                                    .cnt {
+                                        padding: 22px 0 15px;
+                                    }
+                                }
+                                > .sub_infos {
+                                    position: relative;
+                                    padding: 7px 10px 10px;
+                                    background: #f1f1f1;
+                                    text-align: center;
+                
+                                    input {
+                                        @include customComponent();
+                
+                                        & + label {
+                                            @include inlineBlock();
+                                            width: 80px;
+                                            border: 1px solid #dadada;
+                                            background: #ffffff;
+                                            line-height: 30px;
+                                            text-align: center;
+                                            cursor: pointer;
+                                            @include transition(.3);
+                
+                                            &:nth-child(2) {
+                                                border-right: none;
+                                                border-radius: 50px 0 0 50px;
+                                            }
+                                            &:nth-child(4) {
+                                                border-left: none;
+                                                border-radius: 0 50px 50px 0;
+                                            }
+                                        }
+                
+                                        &:hover {
+                                            & + label {
+                                                border-color: #808080;
+                                                background: #efefef;
+                                                color: #505050;
+                                            }
+                                        }
+                                        &:checked {
+                                            & + label {
+                                                border-color: #7f7f7f;
+                                                background: #7f7f7f;
+                                                color: #ffffff;
+                                            }
+                                        }
+                                    }
+                
+                                    input[type=radio]:nth-child(3) {
+                                        &:checked {
+                                            & + label + .wrap > .buz {
+                                                margin-left: -100%;
+                                            }
+                                        }
+                                    }
+                
+                                    > .wrap {
+                                        display: block;
+                                        width: 100%;
+                                        padding: 5px 0 0 0;
+                                        overflow: hidden;
+                                        white-space: nowrap;
+                
+                                        > .buz {
+                                            @include inlineBlock();
+                                            width: 100%;
+                                            height: 416px;
+                                            margin-left: 0;
+                                            vertical-align: top;
+                                            @include transition( 0.3 );
+                
+                                            > ul {
+                                                > li {
+                                                    &:not(:first-child) {
+                                                        padding: 5px 0 0 0;
+                                                    }
+                
+                                                    > .item {
+                                                        position: relative;
+                                                        height: 100px;
+                                                        padding: 28px 10px 0;
+                                                        border-radius: 4px;
+                                                        background: #ffffff;
+                                                        box-sizing: border-box;
+                                                        overflow: hidden;
+                                                        @include clearBoth();
+        
+                                                        &:empty {
+                                                            background: #f9f9f9;
+                                                        }
+        
+                                                        > * {
+                                                            box-sizing: border-box;
+                                                        }
+                
+                                                        .type {
+                                                            float: left;
+                                                            width: 60%;
+                                                            height: 16px;
+                                                            line-height: 1;
+                                                            text-align: left;
+                                                        }
+                                                        .senti {
+                                                            float: right;
+                                                            max-width: 40%;
+                                                            padding: 0 5px;
+                                                            border-radius: 50px;
+                                                            background: #aaaaaa;
+                                                            color: #ffffff;
+                                                            font-size: 0.857em;
+                                                            line-height: 16px;
+                                                            text-align: right;
+                
+                                                            &.is-positive {
+                                                                background: $font-senti-positive;
+                                                            }
+                                                            &.is-negative {
+                                                                background: $font-senti-negative;
+                                                            }
+                                                            &.is-neutral {
+                                                                background: $font-senti-neutral;
+                                                            }
+                                                        }
+                                                        .volume {
+                                                            float: left;
+                                                            width: 60%;
+                                                            padding: 6px 0 0 0;
+                                                            color: $font_color_hl2;
+                                                            font-size: 1.286em;
+                                                            font-weight: bold;
+                                                            text-align: left;
+                                                            line-height: 1;
+                                                        }
+                                                        .ui_fluc {
+                                                            float: right;
+                                                            max-width: 40%;
+                                                            padding: 8px 0 0 0;
+                                                            line-height: 1;
+                                                            text-align: right;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        > .cate {
+                                            @include inlineBlock();
+                                            width: 100%;
+                                            height: 416px;
+                                            vertical-align: top;
+                
+                                            > ul {
+                                                > li {
+                                                    &:not(:first-child) {
+                                                        padding: 5px 0 0 0;
+                                                    }
+                
+                                                    &:first-child {
+                                                        .item {
+                                                            height: 95px;
+                                                        }
+                                                    }
+                
+                                                    > .item {
+                                                        position: relative;
+                                                        height: 75px;
+                                                        padding: 10px;
+                                                        border-radius: 4px;
+                                                        background: #ffffff;
+                                                        box-sizing: border-box;
+                                                        overflow: hidden;
+                                                        text-align: center;
+        
+                                                        &:empty {
+                                                            background: #f9f9f9;
+                                                        }
+        
+                                                        .category {
+                                                            display: block;
+                                                            font-size: 0.857em;
+                                                            line-height: 1;
+                                                            overflow: hidden;
+                                                            white-space: nowrap;
+                                                            text-overflow: ellipsis;
+                                                        }
+                                                        .pdt {
+                                                            display: block;
+                                                            padding: 7px 5px 3px;
+                                                            color: $font_color_hl2;
+                                                            font-weight: bold;
+                                                            text-align: center;
+                                                            line-height: 1;
+                                                            overflow: hidden;
+                                                            white-space: nowrap;
+                                                            text-overflow: ellipsis;
+                                                        }
+                                                        .volume {
+                                                            width: 100%;
+                                                            padding: 4px 0 0 0;
+                                                            text-align: center;
+                                                            line-height: 1;
+                                                        }
+                                                        .ui_fluc {
+                                                            max-width: 65px;
+                                                            height: 16px;
+                                                            padding: 0 5px;
+                                                            border-radius: 50px;
+                                                            background: #f0f0f0;
+                                                            font-size: 0.857em;
+                                                            line-height: 16px;
+                                                            text-align: left;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .homecc {
+                width: 214px;
+    
+                > .wrap {
+                    > ul {
+                        > li {
+                            width: 214px;
+    
+                            > .item {
+                                > .infos {
+                                    box-sizing: border-box;
+                                    text-align: center;
+
+                                    .share {
+                                        font-size: 3.286em;
+                                    }
+                                }
+
+                                > .sub_infos {
+                                    > .wrap {
+                                        > .cate {
+                                            > ul {
+                                                > li {
+                                                    &:first-child {
+                                                        > .item {
+                                                            .pdt {
+                                                                padding: 3px 5px 5px;
+                                                            }
+                                                            .ui_fluc {
+                                                                margin-top: 5px;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    > .item {
+                                                        .pdt {
+                                                            padding: 0 5px 5px;
+                                                        }
+                                                        .volume {
+                                                            &:after {
+                                                                content: '\A';
+                                                                display: block;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .other {
+                width: 925px;
+                padding: 0;
+                overflow: hidden;
+    
+                > .wrap {
+                    > ul {
+                        > li {
+                            width: 153px;
+                            vertical-align: top;
+                            overflow: hidden;
+    
+                            &:not(:first-child) {
+                                border-left: 1px solid #e9e9e9;
+                            }
+
+                            > .item {
+                                > .sub_infos {
+                                    > .wrap {
+                                        > .cate {
+                                            > ul {
+                                                > li {
+                                                    &:first-child {
+                                                        > .item {
+                                                            .pdt {
+                                                                padding: 7px 5px 0;
+                                                                font-size: 1.143em;
+                                                            }
+                                                            .volume {
+                                                                padding: 10px 0 4px;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    > .item {
+                                                        .pdt {
+                                                            padding: 0 5px 0;
+                                                            font-size: 1em;
+                                                        }
+                                                        .volume {
+                                                            padding: 5px 0 2px;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .treemap_wrap {
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            border-radius: 4px;
+            background: #eeeeee;
+        }
+    }
+}

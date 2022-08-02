@@ -1,0 +1,98 @@
+@charset "utf-8";
+
+/* Style */
+header {
+	&.fixed {
+		position: fixed !important;
+	}
+
+	> .wrap{
+		position: relative;
+		width: $doc_wid;
+		margin: 0 auto;
+		@include clearBoth();
+
+		> h1 {
+			float: left;
+			height: $header_hgt;
+			font-size: 0;
+			line-height: 0;
+
+			a {
+				display: block;
+				box-sizing: border-box;
+				line-height: $header_hgt;
+
+				img {
+					vertical-align: middle;
+				}
+			}
+		}
+
+		> .util {
+			position: absolute;
+			top: -$header_util_hgt;
+			right: 0;
+			padding: 9px 0 0 0;
+			line-height: 22px;
+
+			.wrap {
+				@include clearBoth();
+
+				> * {
+					float: left;
+					@include clearBoth();
+
+					> * {
+						float: left;
+						margin: 0 3px 0 0;
+
+						&:last-child {
+							margin-right: 0;
+						}
+					}
+					
+					&:not(:last-child) {
+						padding-right: 10px;
+					}
+					
+					&.user {
+						.user_name {
+							padding-right: 10px;
+						}
+					}
+				}
+			}
+		}
+
+		> .btn_header_pin {
+			position: fixed;
+			top: 6px;
+			left: 50%;
+			margin: 0 0 0 560px;
+			border: 1px solid #ffffff;
+			border-radius: 50%;
+			box-sizing: border-box;
+			background: #ffffff;
+			@include shadow( 0, 0, 3px, 0.3, 0, 0, 0 );
+
+			input {
+				@include customComponent();
+
+				& + label {
+					display: block;
+					width: 26px;
+					height: 26px;
+					background: url(../img/ui/ui_btns_icon.png) no-repeat 7px -74px;
+					cursor: pointer;
+					@include textHidden();
+					@include transition();
+				}
+
+				&:checked + label {
+					background-position:  -23px -74px;
+				}
+			}
+		}
+	}
+}

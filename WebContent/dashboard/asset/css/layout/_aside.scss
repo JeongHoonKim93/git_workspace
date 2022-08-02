@@ -1,0 +1,160 @@
+@charset "utf-8";
+
+
+
+#sidebar {
+    position: fixed;
+    top: 198px;
+    left: 50%;
+    margin: 0 0 0 640px;
+    z-index: 1;
+
+    >.side-wrap {
+        width: 146px;
+        border: 1px solid $component_brd_color_input;
+        border-radius: 11px;
+        background: #ffffff;
+        overflow: hidden;
+        box-sizing: border-box;
+
+        >.side-head {
+            background: #f8f8f8;
+            padding: 6px 10px;
+            border-top: 1px solid #eeeeee;
+            font-size: 12px;
+            color: #909090;
+            text-align: center;
+            word-break: keep-all;
+
+            &:first-child {
+                border-top: 0;
+            }
+        }
+
+        >.side-box {
+
+            >ul {
+
+                li {
+
+                    >a {
+                        position: relative;
+                        display: block;
+                        padding: 7px 19px 0;
+                        color: $component_font;
+                        font-size: 12px;
+                        line-height: 16px;
+                        font-weight: normal;
+                        word-break: keep-all;
+                        @include transition();
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            top: 10px;
+                            left: 11px;
+                            width: 3px;
+                            height: 10px;
+                            // background: $point_color;
+                            border-radius: 2px;
+                            opacity: 0;
+                            @include transition();
+                        }
+
+                    }
+
+                    &:hover {
+                        >a {
+                            color: $font_color_hl2;
+
+                            &:before {
+                                background: #ffec48;
+                                // background: url(../img/ui/ui_aside_icon.png) no-repeat 0 0;
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                    &.active {
+                        >a {
+                            color: $font_color_hl2;
+
+                            &:before {
+                                background: $point_color;
+                                // background: url(../img/ui/ui_aside_icon.png) no-repeat 0 0;
+                                opacity: 1;
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        >a {
+                            padding-bottom: 9px;
+                        }
+                    }
+
+                    >ul {
+                        border-top: 1px solid #e1e1e1;
+
+                        >li {
+
+                            >a {
+                                background: $component_back;
+                                padding-left: 24px;
+                                padding-bottom: 0;
+
+                                &:before {
+                                    content: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    >.side-topBtn {
+        position: absolute;
+        bottom: -42px;
+        right: 0;
+        width: 146px;
+        height: 28px;
+        background: #ffffff;
+        border: 1px solid $component_brd_color_input;
+        border-radius: 100px;
+        text-align: center;
+        box-sizing: border-box;
+        @include transition();
+
+        &:before {
+            content: '\e010';
+            display: inline-block;
+            color: $component_font;
+            font-family: 'icomoon';
+            font-size: 15px;
+            line-height: 26px;
+            @include transition();
+        }
+
+        >span {
+            display: inline-block;
+            color: $component_font;
+            padding-left: 2px;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 26px;
+            text-align: center;
+            vertical-align: top;
+            @include transition();
+        }
+
+        &:hover {
+            background: $component_back;
+
+            &:before {
+                color: $point_color;
+            }
+        }
+    }
+}

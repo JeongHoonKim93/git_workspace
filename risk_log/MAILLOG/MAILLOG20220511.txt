@@ -1,0 +1,88 @@
+[2022년05월11일 11시01분32초] 
+SMTP IP setting,
+[2022년05월11일 11시01분32초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시02분14초] 
+SMTP IP setting,
+[2022년05월11일 11시02분14초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시10분09초] 
+SMTP IP setting,
+[2022년05월11일 11시10분09초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시19분54초] 
+SMTP IP setting,
+[2022년05월11일 11시19분54초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시19분55초] 
+mail send to,jhkim93@realsn.com
+[2022년05월11일 11시19분58초] 
+send OK,jhkim93@realsn.com
+[2022년05월11일 11시19분58초] 
+mail send to,mjkim@realsn.com
+[2022년05월11일 11시20분02초] 
+send OK,mjkim@realsn.com
+[2022년05월11일 11시35분49초] 
+SMTP IP setting,
+[2022년05월11일 11시35분49초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시36분07초] 
+SMTP IP setting,
+[2022년05월11일 11시36분07초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시36분07초] 
+mail send to,jhkim93@realsn.com
+[2022년05월11일 11시36분10초] 
+send OK,jhkim93@realsn.com
+[2022년05월11일 11시37분53초] 
+SMTP IP setting,
+[2022년05월11일 11시37분53초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시38분07초] 
+SMTP IP setting,
+[2022년05월11일 11시38분07초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시38분07초] 
+mail send to,jhkim93@realsn.com
+[2022년05월11일 11시38분10초] 
+send OK,jhkim93@realsn.com
+[2022년05월11일 11시40분24초] 
+SMTP IP setting,
+[2022년05월11일 11시40분24초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 11시40분24초] 
+mail send to,jmhwang@realsn.com
+[2022년05월11일 11시40분27초] 
+send OK,jmhwang@realsn.com
+[2022년05월11일 11시40분27초] 
+mail send to,jhkim93@realsn.com
+[2022년05월11일 11시40분29초] 
+send OK,jhkim93@realsn.com
+[2022년05월11일 11시40분29초] 
+mail send to,mjkim@realsn.com
+[2022년05월11일 11시40분32초] 
+send OK,mjkim@realsn.com
+[2022년05월11일 13시39분01초] 
+SMTP IP setting,
+[2022년05월11일 13시39분01초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 13시39분01초] 
+mail send to,mjkim@realsn.com
+[2022년05월11일 13시39분03초] 
+send OK,mjkim@realsn.com
+[2022년05월11일 13시51분18초] 
+SMTP IP setting,
+[2022년05월11일 13시51분18초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 13시51분26초] 
+SMTP IP setting,
+[2022년05월11일 13시51분26초] 
+SMTP setting :: smtp.gmail.com
+[2022년05월11일 13시51분26초] 
+mail send to,jhkim93@realsn.com
+[2022년05월11일 13시51분29초] 
+send OK,jhkim93@realsn.com
+[2022년05월11일 13시58분31초] 
+SMTP IP setting,
+[2022년05월11일 13시58분31초] 
+SMTP setting :: smtp.gmail.com

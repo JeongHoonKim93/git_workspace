@@ -1,0 +1,3559 @@
+[2022년05월06일 07시51분12초] 
+SELECT ST_SEQ,                       
+       K_XP,                         
+       ST_INTERVAL_DAY,              
+       MD_TYPE,                      
+       SG_SEQ,                       
+       ST_RELOAD_TIME,               
+       ST_LIST_CNT,                  
+       ST_MENU,                      
+       MG_SEQ,                       
+       MG_XP,                        
+       MG_SITE,                      
+       MG_MENU,                      
+       B.MG_COMPANY                  
+  FROM SETTING A,                   	
+       MEMBER_GROUP B				
+ WHERE A.M_SEQ   = 2 
+       AND B.MG_SEQ   = 2 
+
+[2022년05월06일 07시51분12초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시51분12초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 07시51분12초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 07시51분12초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 07시51분12초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 07시51분12초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 07시51분12초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 07시51분12초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시51분12초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 07시51분21초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 07시54분38초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시54분38초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 07시54분38초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 07시54분38초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 07시54분38초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 07시54분38초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 07시54분38초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134459
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 07시54분38초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시54분38초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 07시54분39초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 07시57분00초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시57분00초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 07시57분00초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 07시57분00초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 07시57분00초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 07시57분00초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 07시57분00초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 07시57분00초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시57분00초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 07시57분52초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시57분52초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 07시57분52초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 07시57분52초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 07시57분52초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 07시57분52초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 07시57분52초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 07시57분52초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시57분52초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 07시57분53초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 07시57분58초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 07시58분42초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시58분42초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 07시58분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 07시58분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 07시58분43초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 07시58분43초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 07시58분43초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 07시58분43초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시58분43초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 07시58분44초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 07시59분11초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시59분11초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 07시59분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 07시59분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 07시59분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 07시59분11초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 07시59분11초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134461
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 07시59분11초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 07시59분11초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 07시59분13초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시03분12초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시03분12초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시03분12초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시03분12초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시03분12초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시03분12초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시03분12초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시03분12초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시03분12초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시03분13초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시03분22초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시03분22초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시03분22초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시03분22초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시03분22초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시03분22초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시03분22초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시03분22초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시03분22초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시03분23초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시04분20초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시04분20초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시04분20초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시04분20초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시04분20초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시04분20초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시04분20초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134466
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시04분20초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시04분21초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시04분21초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시05분53초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시05분53초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134474
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시05분53초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134474
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시05분53초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134474
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시05분53초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134474
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시05분53초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시05분53초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134474
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시05분53초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시05분53초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시05분54초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시09분55초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시10분55초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시10분55초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시10분55초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시10분55초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시10분55초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시10분55초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시10분55초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시10분55초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시10분55초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시10분56초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시12분14초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시12분14초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시12분14초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시12분14초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시12분14초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시12분14초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시12분14초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시12분14초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시12분14초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시12분16초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시13분29초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시13분29초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시13분29초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시13분29초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시13분29초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시13분29초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시13분29초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134476
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시13분29초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시13분29초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시13분30초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시22분38초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시22분38초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시22분38초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시22분38초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시22분38초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시22분38초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시22분38초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시22분38초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시22분38초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시22분39초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시24분25초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시24분25초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시24분25초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시24분25초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시24분25초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시24분25초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시24분25초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시24분25초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시24분25초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시24분26초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시24분41초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시24분41초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시24분41초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시24분41초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시24분41초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시24분41초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시24분41초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134490
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시24분41초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시24분41초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시24분42초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시42분11초] 
+SELECT ST_SEQ,                       
+       K_XP,                         
+       ST_INTERVAL_DAY,              
+       MD_TYPE,                      
+       SG_SEQ,                       
+       ST_RELOAD_TIME,               
+       ST_LIST_CNT,                  
+       ST_MENU,                      
+       MG_SEQ,                       
+       MG_XP,                        
+       MG_SITE,                      
+       MG_MENU,                      
+       B.MG_COMPANY                  
+  FROM SETTING A,                   	
+       MEMBER_GROUP B				
+ WHERE A.M_SEQ   = 2 
+       AND B.MG_SEQ   = 2 
+
+[2022년05월06일 08시42분11초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시42분11초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시42분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시42분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시42분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시42분11초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시42분11초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시42분11초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시42분11초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시42분13초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시42분25초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시42분25초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시42분25초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시42분25초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시42분25초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시42분25초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시42분25초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시42분25초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시42분25초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시42분26초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시42분51초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시43분03초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시44분09초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분09초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시44분09초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시44분09초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시44분09초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시44분09초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시44분09초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시44분10초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분10초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시44분11초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시44분18초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분18초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시44분18초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시44분18초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시44분18초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시44분18초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시44분18초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시44분18초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분18초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시44분19초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시44분51초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분51초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시44분51초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시44분51초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시44분51초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시44분51초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시44분51초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시44분51초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분51초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시44분52초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시44분54초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시44분59초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분59초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시44분59초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시44분59초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시44분59초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시44분59초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시44분59초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134519
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시44분59초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시44분59초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시45분00초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시45분55초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시45분55초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시45분55초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시45분55초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시45분55초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시45분55초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시45분55초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시45분55초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시45분55초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시45분56초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시46분09초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시48분11초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시48분11초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시48분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시48분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시48분11초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시48분11초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시48분11초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시48분11초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시48분11초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시48분12초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시48분19초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시48분37초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시48분42초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시48분42초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시48분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시48분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시48분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시48분42초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시48분42초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134520
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시48분42초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시48분42초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시51분31초] 
+SELECT ST_SEQ,                       
+       K_XP,                         
+       ST_INTERVAL_DAY,              
+       MD_TYPE,                      
+       SG_SEQ,                       
+       ST_RELOAD_TIME,               
+       ST_LIST_CNT,                  
+       ST_MENU,                      
+       MG_SEQ,                       
+       MG_XP,                        
+       MG_SITE,                      
+       MG_MENU,                      
+       B.MG_COMPANY                  
+  FROM SETTING A,                   	
+       MEMBER_GROUP B				
+ WHERE A.M_SEQ   = 2 
+       AND B.MG_SEQ   = 2 
+
+[2022년05월06일 08시51분31초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시51분31초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134522
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 08시51분31초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134522
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 08시51분31초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134522
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 08시51분31초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134522
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 08시51분31초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 08시51분31초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134522
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 08시51분31초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 08시51분32초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 08시51분33초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시51분42초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시51분49초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시51분50초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 08시52분00초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시25분32초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시25분32초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134637
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시25분32초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134637
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시25분32초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134637
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시25분32초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134637
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시25분32초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시25분32초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134637
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시25분32초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시25분32초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시25분34초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시26분01초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분01초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시26분01초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시26분01초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시26분01초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시26분01초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시26분01초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시26분01초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분01초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시26분01초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시26분13초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분13초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시26분13초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시26분13초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시26분13초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시26분13초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시26분13초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시26분13초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분13초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시26분14초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시26분26초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분26초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시26분26초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시26분26초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시26분26초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시26분26초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시26분26초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시26분26초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분26초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시26분26초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시26분36초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분36초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시26분36초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시26분36초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시26분36초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시26분36초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시26분36초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134638
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시26분36초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시26분36초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시26분36초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시37분42초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시37분42초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시37분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시37분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시37분42초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시37분42초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시37분42초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시37분43초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시37분43초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시37분45초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시38분47초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시38분47초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시38분47초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시38분47초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시38분47초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시38분47초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시38분48초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시38분48초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시38분48초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시38분48초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시39분28초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시39분28초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시39분28초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시39분28초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시39분28초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시39분28초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시39분28초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134666
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시39분28초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시39분28초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시39분30초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시56분46초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시56분46초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시56분46초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시56분46초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시56분46초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시56분46초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시56분46초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시56분46초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시56분46초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시56분48초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 09시56분59초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시56분59초] 
+SELECT COUNT(DISTINCT B.MD_PSEQ) AS TOTAL_CNT
+     , COUNT(DISTINCT B.MD_SEQ) AS TOTAL_CNT2
+  FROM IDX A, META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+
+[2022년05월06일 09시56분59초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ISSUE_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+    AND A.MD_SEQ = B.MD_SEQ
+    AND B.ISSUE_CHECK = 'Y'
+
+[2022년05월06일 09시56분59초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS TEMP_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+   AND B.ISSUE_CHECK = 'T' 
+
+[2022년05월06일 09시56분59초] 
+  SELECT COUNT(DISTINCT B.MD_SEQ) AS ALL_TOTAL_CNT2
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+
+[2022년05월06일 09시56분59초] 
+SELECT MAX(MAIN) MAIN , MAX(MIDLE) MIDLE, MAX(BOTTOM) BOTTOM     
+  FROM (                                                         
+        SELECT K_VALUE AS  MAIN , '' AS MIDLE , '' AS BOTTOM     
+          FROM KEYWORD                                           
+         WHERE K_XP in ( 1,2,3,4 )                               
+           AND K_YP = 0                                          
+           AND K_ZP = 0                                          
+           AND K_TYPE < 3                                        
+  		  AND K_USEYN='Y'                                              
+       )TEMP                                                     
+
+[2022년05월06일 09시56분59초] 
+SELECT A.*													
+     , FN_GET_KEYWORD(A.MD_SEQ) AS K_VALUE						
+     , FN_GET_COMFIRM(2,A.MD_SEQ) AS COMFIRM
+, IFNULL((SELECT MD_REPLY_TOTAL_CNT FROM META_REPLY_CNT WHERE MD_SEQ = A.MD_SEQ LIMIT 1),0) AS REPLY_CNT
+, (SELECT IF(COUNT(*)>0,'Y','N')AS IS_STORAGE  FROM MAP_META_STORAGE WHERE MD_SEQ = A.MD_SEQ ) AS IS_STORAGE
+FROM ( 														
+SELECT '' AS T_FOLLOWERS,									
+       '' AS K_VALUE2,										
+       A.MD_SEQ,             								
+       A.SG_SEQ,                   							
+       A.S_SEQ        ,                 						
+       A.MD_SITE_NAME       ,                				
+       A.MD_MENU_NAME       ,                     			
+       A.MD_TYPE       ,                               		
+       DATE_FORMAT(A.MD_DATE,'%Y-%m-%d %H:%i:%s') AS MD_DATE,
+       A.MD_SAME_COUNT  ,                                    
+       A.MD_PSEQ        ,                                    
+       A.MD_TITLE       ,                                    
+       A.MD_URL         ,                                    
+      '' AS MD_IMPORTANT   ,                                    
+      '' AS PORTAL_CHECK   ,                                    
+       A.ISSUE_CHECK,                                 
+                        '' AS I_DELDATE,  	
+                        '' AS M_SEQ,   		
+                        '' AS M_NAME, 		
+      A.MD_IMG  ,        
+      A.MD_CONTENT  
+ FROM META A
+    , (
+       SELECT	MIN(B.MD_SEQ) AS MD_SEQ
+  FROM IDX A,META B
+ WHERE B.MD_SEQ BETWEEN 133857 AND 134712
+   AND A.MD_SEQ = B.MD_SEQ
+                                 AND A.K_XP    IN (1,2,3,4)               
+                        GROUP BY B.MD_PSEQ                                  
+         	     ORDER BY MD_DATE DESC                                                 
+         		 LIMIT 0,30                                 
+      ) B
+WHERE A.MD_SEQ = B.MD_SEQ
+)A
+
+[2022년05월06일 09시56분59초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 09시56분59초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_CODE > 0 AND IC_USEYN='Y' ORDER BY IC_TYPE, IC_CODE ASC  
+
+[2022년05월06일 09시57분00초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 10시24분37초] 
+ SELECT (SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE ASC LIMIT 1) MIN_NO 
+        ,(SELECT MD_SEQ FROM META WHERE MD_DATE BETWEEN '2022-05-06 00:00:00' AND '2022-05-06 23:59:59' ORDER BY MD_DATE DESC LIMIT 1) MAX_NO 
+
+[2022년05월06일 10시24분37초] 
+ SELECT K_XP, K_YP, K_ZP,K_OP, K_VALUE, K_OP, K_USEYN  	
+ FROM KEYWORD 					
+ WHERE K_TYPE < 3 					
+ ORDER BY K_POS, K_XP, K_YP, K_ZP 	
+
+[2022년05월06일 10시28분23초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+
+[2022년05월06일 10시29분32초] 
+ SELECT * FROM ISSUE_CODE WHERE IC_USEYN='Y' ORDER BY IC_TYPE, IC_ORDER ASC 
+

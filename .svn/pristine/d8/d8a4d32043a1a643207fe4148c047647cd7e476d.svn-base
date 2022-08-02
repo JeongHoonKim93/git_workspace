@@ -1,0 +1,526 @@
+@charset "utf-8";
+
+// 목록 게시판
+.ui_brd_list {
+	// 게시판 헤더(버튼/정렬 등)
+	> .header {
+		position: relative;
+		padding: 10px 10px;
+		background: #f9f9f9;
+		@include clearBoth();
+
+		&.no_bg {
+			background: none;
+
+			& + .infos {
+				background: none !important;
+			}
+		}
+
+		.lc {
+			float: left;
+		}
+		.rc {
+			float: right;
+		}
+		.ui_tab {
+			position: absolute;
+			bottom: -27px;
+			z-index: 1;
+		}
+
+		> * {
+			@include clearBoth();
+
+			> * {
+				float: left;
+				line-height: 26px;
+				&:not(:last-child) {
+					margin-right: 5px;
+				}
+			}
+		}
+
+		&+ .infos {
+			padding-top: 5px;
+		}
+	}
+
+	// 게시판 상단 - 게시판 정보
+	> .infos {
+		position: relative;
+		min-height: 12px;
+		padding: 10px;
+		background: #f9f9f9;
+		line-height: 1;
+		@include clearBoth();
+
+		> .lc {
+			float: left;
+
+			.ui_tab {
+				margin-bottom: -10px;
+			}
+		}
+		> .rc {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+
+			.page_info {
+				font-size: 0.917em;
+			}
+		}
+	}
+
+	// 실제 게시판 공간
+	> .wrap {
+		border-top: 1px solid $brd_color;
+		border-bottom: 1px solid $brd_color_dm;
+
+		> table {
+			width: 100%;
+
+			> thead {
+				> tr {
+					> th, > td {
+						position: relative;
+						height: 22px;
+						padding: 5px 2px;
+						border-bottom: 1px solid $brd_color_dm;
+						background: #f0f0f0;
+						color: #444444;
+						text-align: center;
+						line-height: 1.4em;
+
+						&:after {
+							content: '';
+							position: absolute;
+							top: 50%;
+							right: 0;
+							width: 1px;
+							height: 14px;
+							margin: -7px 0 0 0;
+							background: #bfbfbf;
+						}
+
+						&:last-child {
+							&:after {
+								content: none;
+							}
+                        }
+                        
+                        &.is-thick {
+                            background: #666666;
+                            color: #ffffff;
+                        }
+
+                        &.no-pad {
+                            padding: 0 !important;
+                        }
+                    }
+                    > td {
+                        background: #ffffff;
+                    }
+				}
+			}
+
+			> tbody {
+				> tr {
+					> th, > td {
+						height: 22px;
+						padding: 3px 2px;
+                        border-bottom: 1px solid $brd_color_dm;
+                        background: #ffffff;
+						font-weight: normal;
+						text-align: center;
+						line-height: 1.4em;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						@include transition();
+
+						&:last-child {
+							border-right: none;
+						}
+
+						&.no_bg {
+							background: none !important;
+						}
+						&.on_bg {
+							background: #f9f9f9 !important;
+                        }
+					
+						.empty_color{
+							color: $point_color;
+						}
+
+						.lnk {
+							@include overUnderline( $font_color, $font_color, $font_color );
+						}
+					}
+
+					&:nth-child( 2n ) {
+						> th, > td {
+							background: #f9f9f9;
+						}
+					}
+
+					&:last-child {
+						> th, > td {
+							border-bottom: none;
+						}
+					}
+
+					&.active {
+						> th, > td {
+							background: #eff6ff;
+						}
+					}
+
+					.lnk {
+						@include overUnderline( #666666 );
+					}
+					.col_none{
+						padding: 5px 0 5px 5px;
+						border-right: none;
+					}
+				}
+			}
+
+			> tfoot {
+				> tr {
+					> th, > td {
+						position: relative;
+						height: 22px;
+						padding: 10px 5px;
+						border-top: 1px solid $brd_color_dm;
+						background: #f0f0f0;
+						color: #444444;
+						text-align: center;
+						line-height: 1.4em;
+
+						&:after {
+							content: '';
+							position: absolute;
+							top: 50%;
+							right: 0;
+							width: 1px;
+							height: 14px;
+							margin: -7px 0 0 0;
+							background: #bfbfbf;
+						}
+
+						&:last-child {
+							&:after {
+								content: none;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// 상단 보더 없는 경우
+		&.no_bd {
+			> table {
+				border-top: none !important;
+			}
+		}
+
+		&.h_scroll {
+			overflow-x: auto;
+
+			> table {
+				width: auto;
+				min-width: 100%;
+			}
+		}
+	}
+
+	> .footer {
+		$pad_top : 30px;
+
+		position: relative;
+		padding: $pad_top 0;
+		text-align: center;
+
+		> .lc {
+			position: absolute;
+			top: $pad_top;
+			left: 0;
+			line-height: 28px;
+			font-size: 0.917em;
+			z-index: 1;
+
+			&:after {
+				@include clearBoth();
+			}
+
+			> * {
+				float: left;
+			}
+		}
+		> .rc {
+			position: absolute;
+			top: $pad_top;
+			right: 0;
+			line-height: 28px;
+			font-size: 0.917em;
+			z-index: 1;
+
+			&:after {
+				@include clearBoth();
+			}
+
+			> * {
+				float: left;
+			}
+		}
+	}
+
+	&.ui_data_brd {		// 데이터 형태의 테이블
+		> .wrap {
+			> table {
+				> thead {
+					> tr {
+						> th, > td {
+							padding: 10px;
+							border-right: 1px solid $brd_color_dm;
+
+							&:after {
+								content: none;
+							}
+
+							&:last-child {
+								border-right: none;
+							}
+						}
+					}
+				}
+
+				> tbody {
+					> tr {
+						> th, > td {
+							padding: 6px 10px;
+                            border-right: 1px solid $brd_color_dm;
+                            
+                            &.not_right_bd {
+                                border-right: none;
+                            }
+
+							&:last-child {
+								border-right: none;
+							}
+						}
+
+						> th {
+							background: #f0f0f0;
+						}
+					}
+				}
+
+				> tfoot {
+					> tr {
+						> th, > td {
+							padding: 10px;
+							border-right: 1px solid $brd_color_dm;
+
+							&:after {
+								content: none;
+							}
+
+							&:last-child {
+								border-right: none;
+							}
+						}
+					}
+				}
+			}
+        }
+        
+        &.is-thick-right-bd {
+            th, td {
+                border-right-color: #c9c9c9 !important;
+            }
+        }
+	}
+
+	&.ui_fixed_table {
+		> .wrap {
+			overflow: auto;
+
+			> table {
+				min-width: 100%;
+				width: auto;
+			}
+
+			.on_left_bd {
+				border-left: 1px solid $brd_color_dm !important;
+			}
+		}
+
+		&.vertical_scroll {
+			> .wrap {
+				> table {
+					//width: 100%;
+				}
+			}
+		}
+    }
+    
+    &.is-slim {
+        th, td {
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+        }
+    }
+
+	&:not(.not_over) {		// Over액션 일어나야 하는 경우
+		> .wrap {
+			> table {
+				> tbody {
+					> tr {
+						&:hover {
+							> th:not([rowspan]):not(.no_over), > td:not([rowspan]):not(.no_over) {
+								background: #e9e9e9;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	&.not_top_brd {			// Top 보더 제거
+		> .wrap {
+			border-top: none;
+
+			> table {
+				border-top: none;
+			}
+		}
+	}
+	&.not_bot_brd {			// Bottom 보더 제거
+		> .wrap {
+			border-bottom: none;
+
+			> table {
+				> tbody {
+					> tr {
+						&:last-child {
+							> td {
+								border-bottom: none;
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+    
+    &.is-scroll {
+        overflow-y: scroll;
+    }
+}
+
+// 입력 게시판
+.ui_brd_inputs {
+	> table {
+		width: 100%;
+
+		> tbody {
+			> tr {
+				> th {
+					padding: 8px 15px;
+					border-right: 1px solid $brd_color_dm;
+					border-bottom: 1px solid $brd_color_dm;
+					background: #f9f9f9;
+					color: #333333;
+					text-align: right;
+
+					&.ui_vt {
+						line-height: 26px;
+					}
+				}
+				> td {
+					padding: 8px 15px;
+					border-right: 1px solid $brd_color_dm;
+					border-bottom: 1px solid $brd_color_dm;
+					line-height: 26px;
+					vertical-align: top;
+					@include clearBoth();
+
+					&:last-child {
+						border-right: none;
+					}
+
+					> * {
+						float: left;
+						margin: 0 5px 0 0;
+
+						&:last-child {
+							margin-right: 0;
+						}
+					}
+
+					// Input 버튼 가지고 있는 형태
+					.ui_input_type_1_btn {
+						float: none;
+						position: relative;
+						padding: 0 55px 0 0;
+						margin: 0 0 5px 0;
+
+						.in_btn {
+							position: absolute;
+							bottom: 0;
+							right: 0;
+							width: 50px;
+							padding-left: 0;
+							padding-right: 0;
+							text-align: center;
+						}
+
+						&:last-child {
+							margin: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.on_top_bd {			// Top 보더 생성
+		border-top: 1px solid $brd_color_dm;
+	}
+	&.input_grp {			// th우측 정렬 되는 Input그룹일 경우
+		> table {
+			> tbody {
+				> tr {
+					> th {
+						text-align: right;
+					}
+				}
+			}
+		}
+	}
+	&.not_bot_brd {			// Bottom 보더 제거
+		> table {
+			> tbody {
+				> tr {
+					&:last-child {
+						> th, > td {
+							border-bottom: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.small {
+		th, td {
+			padding-top: 3px;
+			padding-bottom: 3px;
+		}
+	}
+}

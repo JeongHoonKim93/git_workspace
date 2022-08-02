@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+/* Style */
+html {
+	body {
+		>#wrap {
+			position: relative;
+			min-width: 1200px;
+			padding: 0;
+			box-sizing: border-box;
+
+			>header {
+				// position: sticky;
+				// top: 0;
+				z-index: 3;
+			}
+
+			>#container {
+				// position: relative;
+				// min-height: 100%;
+				@include clearBoth();
+				// z-index: 0;
+
+				>#content {
+					position: relative;
+					min-height: 100%;
+					box-sizing: border-box;
+				}
+			}
+
+			>footer {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				min-width: 100%;
+				height: $footer_hgt;
+				background: #bcbcbc;
+			}
+		}
+	}
+}

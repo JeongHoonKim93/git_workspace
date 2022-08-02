@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+// Variables
+$point_color: #df0615;
+$point_active_color: #dfecfb;
+$body_bg_color: #efefef;
+
+$over_bg_color: #f0f0f0;
+$active_bg_color: #dfecfb;
+
+$brd_color: #c9c9c9;		// 기본
+$brd_color_dm: #e1e1e1;		// 딤드
+$brd_color_hl: #767676;		// 강조
+
+$component_brd_color: #cccccc;	// 컴포넌트 보더
+
+$font_color: #666666;
+$font_color_hl: #333333;
+$font_color_dm: #999999;
+$font_senti_postive: #5bb9ff;		// 글꼴 색상 : 긍정
+$font_senti_negative: #ff7575;		// 글꼴 색상 : 부정
+$font_senti_neutral: #80d780;		// 글꼴 색상 : 중립
+
+// Style
+.fc_postive {
+	color: $font_senti_postive !important;
+}
+.fc_negative {
+	color: $font_senti_negative !important;
+}
+.fc_neutral {
+	color: $font_senti_neutral !important;
+}
+body{
+	background-color: $body_bg_color;
+	color: $font_color;
+
+	&.tmp_01 {
+		$point_color: #ff0000;
+	}
+}

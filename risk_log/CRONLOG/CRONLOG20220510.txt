@@ -1,0 +1,2 @@
+[2022년05월10일 15시57분45초] 
+IOException :java.io.IOException: Server returned HTTP response code: 500 for URL: http://bing.devel.com/riskv3/report/report_form_daily_bing.jsp?ir_type=D2&ir_sdate=null&ir_edate=null&ir_stime=null&ir_etime=null&id_seqs=&chart1=http://bing.devel.com/chartimg/chart1_2_20220510155745.png&chart2=http://bing.devel.com/chartimg/chart2_2_20220510155745.png

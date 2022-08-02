@@ -1,0 +1,194 @@
+@charset "utf-8";
+
+// Style
+.ui_treeview {
+	position: relative;
+
+	> .wrap {
+		min-height: 400px;
+		padding: 20px;
+		overflow: auto;
+
+		ul {
+			overflow: hidden;
+
+			li {
+				padding: 0;
+				background: url(#{$ui_img_path}ui_treeview_line.gif) repeat-y 8px 0;
+
+				.item {
+					@include inlineBlock();
+					position: relative;
+					min-height: 16px;
+					padding: 0 0 0 18px;
+					margin: 0 0 7px 0;
+					color: #666666;
+					line-height: 16px;
+					vertical-align: top;
+
+					.icon {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 16px;
+						height: 16px;
+						background: url(#{$ui_img_path}ui_treeview.png) no-repeat -42px 0;
+						text-align: left;
+						text-indent: -9999px;
+
+					}
+					.title {
+						@include inlineBlock();
+						padding: 0 4px;
+						font-weight: normal;
+					}
+
+					a.title {
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+					&.home {
+						.icon {
+							background-position: 0 0 !important
+						}
+					}
+					&.active {
+						.title {
+							background: red;
+							color: #ffffff;
+						}
+					}
+					&+ ul {
+						height: 0;
+					}
+					&.expanded + ul {
+						height: auto;
+					}
+					&.folder {
+						&.expanded {
+							.icon {
+								background-position: -22px 0;
+							}
+						}
+						&.not_expanded {
+							.icon {
+								background-position: -62px 0 !important;
+							}
+						}
+					}
+				}
+
+				&:last-child, &.ld {
+					background: none;
+				}
+
+				&.ld {
+					.item {
+						@include inlineBlock();
+						position: relative;
+						min-height: 16px;
+						padding: 0 0 0 18px;
+						margin: 0 0 4px 0;
+						color: #666666;
+						line-height: 16px;
+						vertical-align: top;
+
+						&:before {
+							content: '';
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 16px;
+							height: 16px;
+							background: url(#{$ui_img_path}ui_treeview.png) no-repeat 0 0;
+
+						}
+						&.type_a {
+							&:before {
+								background-position: -82px 0
+							}
+						}
+						&.type_p {
+							&:before {
+								background-position: -102px 0
+							}
+						}
+						&.type_h {
+							&:before {
+								background-position: -122px 0
+							}
+						}
+						&.type_o {
+							&:before {
+								background-position: -142px 0
+							}
+						}
+						&.type_k {
+							&:before {
+								background-position: -162px 0
+							}
+						}
+						&.type_dic {
+							&:before {
+								background-position: -182px 0
+							}
+						}
+					}
+				}
+			}
+		}
+
+		> ul {
+			> li {
+				li {
+					padding: 0 0 0 21px;
+					background-position: 29px 0;
+				}
+			}
+		}
+	}
+
+	// 키워드 아이콘 설명
+	.infos {
+		position: relative;
+		padding: 10px;
+		border-top: 1px solid $brd_color_dm;
+		box-sizing: border-box;
+		text-align: right;
+
+		.ui_box {
+			position: absolute;
+			right: 10px;
+			bottom: 36px;
+			width: 400px;
+			font-size: 0.917em;
+			@include shadow( 0, 0, 5px, 0.08 );
+
+			.icon_keyword {
+				display:block;
+				width:16px;
+				height:16px;
+				background:url(../img/ui/ui_treeview.png) no-repeat 0 0;
+				text-align:left;
+				text-indent:-9999px;
+
+				&.type_a {
+					background-position:-82px 0
+				}
+				&.type_p {
+					background-position:-102px 0
+				}
+				&.type_h {
+					background-position:-122px 0
+				}
+				&.type_o {
+					background-position:-142px 0
+				}
+				&.type_k {
+					background-position:-162px 0
+				}
+			}
+		}
+	}
+}

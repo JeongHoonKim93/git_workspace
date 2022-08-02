@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+// Style
+#content.page_main {
+    .chart_logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 80px;
+        height: 172px;
+        background: url(../img/view/main/chart_logo.png) no-repeat 0 0;
+    }
+}

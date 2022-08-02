@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+// Style
+#wrap {
+	#content.page_main {
+
+		background-color: red;
+
+		// 검색조건
+		#top_searchs {
+			.dcp > select {
+				width: 200px;
+			}
+		}
+	}
+}
+

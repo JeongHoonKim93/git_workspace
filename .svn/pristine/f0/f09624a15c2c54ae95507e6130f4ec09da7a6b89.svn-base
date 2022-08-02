@@ -1,0 +1,1238 @@
+@charset "utf-8";
+
+// 목록 게시판
+.ui_brd_list {
+	font-family: $font_family;
+
+	// 게시판 헤더(버튼/정렬 등)
+	>.header {
+		position: relative;
+		padding: 9px 0 3px 0;
+		@include clearBoth();
+
+		&:empty {
+			padding: 0;
+		}
+
+		&.no_bg {
+			background: none;
+
+			&+.infos {
+				background: none !important;
+			}
+		}
+
+		// &.is-pad-t-7 {
+		// 	padding-top: 7px;
+		// }
+		// &.is-pad-t-10 {
+		//     padding-top: 10px;
+		// }
+
+		.lc {
+			float: left;
+		}
+
+		.rc {
+			float: right;
+		}
+
+		.ui_tab {
+			position: absolute;
+			bottom: -27px;
+			z-index: 1;
+		}
+
+		>* {
+			@include clearBoth();
+
+			>* {
+				float: left;
+				line-height: 12px;
+
+				&:not(:last-child) {
+					margin-right: 5px;
+				}
+
+				&.page_info {
+					color: $component_font;
+					font-size: 12px;
+
+					.cnt {
+						color: $font_color_hl2;
+					}
+
+					.page {
+						font-size: 11px;
+
+						>em {
+							color: $font_color_hl2;
+							font-weight: bold;
+						}
+					}
+
+				}
+			}
+		}
+
+		&+.infos {
+			padding-top: 5px;
+		}
+
+		h5 {
+			padding: 5px 0 0 0;
+			font-size: 20px;
+			font-weight: normal;
+			line-height: 1;
+		}
+
+		hr {
+			display: block;
+			width: 1px;
+			height: 26px;
+			border: none;
+			background: #e8e8e8;
+		}
+	}
+
+	// 게시판 상단 - 게시판 정보
+	>.infos {
+		position: relative;
+		min-height: 12px;
+		padding: 10px;
+		background: #f9f9f9;
+		line-height: 1;
+		@include clearBoth();
+
+		>.lc {
+			float: left;
+
+			.ui_tab {
+				margin-bottom: -10px;
+			}
+		}
+
+		>.rc {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+
+			.page_info {
+				font-size: 0.917em;
+			}
+		}
+	}
+
+	// 실제 게시판 공간
+	>.wrap {
+		border-top: 2px solid #000000;
+
+		>table {
+			width: 100%;
+
+			>thead {
+				>tr {
+
+					>th,
+					>td {
+						position: relative;
+						height: 25px;
+						background: #efefef;
+						border-right: 1px solid #fbfbfb;
+						border-bottom: 1px solid #f0f0f0;
+						padding: 0 5px;
+						color: $font_color_hl;
+						font-family: $font_family;
+						font-size: 12px;
+						font-weight: normal;
+						text-align: center;
+
+						&:last-child {
+							border-right: 1px solid #efefef;
+						}
+					}
+				}
+			}
+
+			>tbody {
+
+				>tr {
+
+					>th,
+					>td {
+						height: 34px;
+						padding: 0 10px;
+						border-right: 1px solid #fbfbfb;
+						border-bottom: 1px solid #f6f6f6;
+						background: #ffffff;
+						color: $font_color;
+						font-size: 12px;
+						font-weight: normal;
+						text-align: center;
+						line-height: 20px;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						@include transition();
+
+						&:last-child {
+							border-right: 0;
+						}
+
+						.lnk {
+							&:hover {
+								color: $point_color;
+								text-decoration: underline;
+							}
+						}
+					}
+
+					&.active {
+
+						>th,
+						>td {
+							background: $component_back !important;
+
+							>a {
+								color: #f64e5a;
+								text-decoration: underline;
+							}
+						}
+					}
+
+					.col_none {
+						padding: 5px 0 5px 5px;
+						border-right: none;
+					}
+
+					// &:nth-child( 2n ) {
+
+					// 	> th, > td {
+					// 		background: #fafafa;
+					// 	}
+					// }
+				}
+			}
+
+			&.active_able {
+
+				>tbody {
+					>tr {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+
+		// 상단 보더 없는 경우
+		&.no_bd {
+			>table {
+				border-top: none !important;
+			}
+		}
+
+		&.h_scroll {
+			overflow-x: auto;
+
+			table {
+				width: auto;
+				min-width: 100%;
+
+				>thead {
+					position: sticky;
+					top: 0;
+
+				}
+
+				>tbody {
+					.ui_fluc {
+						position: static;
+					}
+				}
+			}
+		}
+
+		.is-dot {
+			position: relative;
+			color: $component_font;
+			padding-left: 10px;
+			margin-left: 5px;
+			color: $component_font !important;
+			font-size: 11px;
+			line-height: 16px;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 8px;
+				height: 8px;
+				margin-top: -4px;
+				border-radius: 50%;
+				background: #555555;
+			}
+
+			&.fc_positive {
+
+				&:before {
+					background: $font-senti-positive !important;
+				}
+
+			}
+
+			&.fc_neutral {
+
+				&:before {
+					background: $font_senti_neutral !important;
+				}
+			}
+
+			&.fc_negative {
+
+				&:before {
+					background: $font_senti_negative !important;
+				}
+			}
+		}
+	}
+
+	>.footer {
+		$pad_top: 10px;
+		position: relative;
+		padding: $pad_top 0 0;
+		text-align: center;
+
+		>.lc {
+			position: absolute;
+			top: $pad_top;
+			left: 0;
+			line-height: 28px;
+			font-size: 0.917em;
+			z-index: 1;
+
+			&:after {
+				@include clearBoth();
+			}
+
+			>* {
+				float: left;
+			}
+		}
+
+		>.rc {
+			position: absolute;
+			top: $pad_top;
+			right: 0;
+			line-height: 28px;
+			font-size: 0.917em;
+			z-index: 1;
+
+			&:after {
+				@include clearBoth();
+			}
+
+			>* {
+				float: left;
+			}
+		}
+	}
+
+	&.ui_data_brd {
+		// 데이터 형태의 테이블
+
+		>.wrap {
+
+			>table {
+				>thead {
+					>tr {
+
+						>th,
+						>td {
+							height: 38px;
+							padding: 0 10px;
+							border: 1px solid #bcbcbc;
+							border-left: 0;
+							border-bottom: 0;
+
+							&:after {
+								content: none;
+							}
+
+							&:first-child {
+								border-left: 1px solid #bcbcbc;
+							}
+
+						}
+
+						&.clr_f8 {
+
+							>th,
+							>td {
+								background: #f8f8fa;
+							}
+						}
+
+						&:last-child {
+
+							>th,
+							>td {
+								border-bottom: 1px solid #bcbcbc;
+							}
+						}
+					}
+				}
+
+				>tbody {
+					>tr {
+
+						>th,
+						>td {
+							height: 31px;
+							padding: 0 5px;
+							border-right: 1px solid #dfdfdf;
+							line-height: 16px;
+
+							&.not_right_bd {
+								border-right: none;
+							}
+
+							&.ui_autowrap {
+								padding: 3px 19px;
+							}
+
+						}
+
+						>th {
+							background: #f0f0f0;
+							color: #c0c0c0;
+						}
+
+						&:hover {
+							.ui_fluc {
+								background: #e3e3e3;
+							}
+						}
+					}
+				}
+
+				>tfoot {
+					>tr {
+
+						>th,
+						>td {
+							padding: 10px;
+							border-right: 1px solid $brd_color_dm;
+
+							&:after {
+								content: none;
+							}
+
+							&:last-child {
+								border-right: none;
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+		&.ver2 {
+			position: relative;
+
+			>.wrap {
+
+				table {
+					width: 100%;
+					table-layout: fixed;
+
+					>thead {
+
+						>tr {
+
+							>th,
+							>td {
+								height: 42px;
+								padding: 0 5px;
+								text-align: center;
+
+								.ui_fluc {
+									position: static;
+								}
+
+								&:after {
+									content: none;
+								}
+
+								&.active {
+									position: relative;
+									background: #808080;
+									color: #ffffff;
+								}
+							}
+
+							>th {
+								background: #e2e2e2;
+								color: #000000;
+								font-weight: normal;
+							}
+
+							>td {
+								background: #d7d7d7;
+								color: #909090;
+								font-size: 12px;
+							}
+
+							&.th_01 {
+
+								>th,
+								>td {
+									height: 24px;
+									background: #d7d7d7;
+									border: 1px solid #d1d1d1;
+								}
+							}
+
+							&.top_con {
+								>td {
+									height: 38px;
+									background: #fff3cc;
+									border: 1px solid #eeeeee;
+									border-top: 0;
+								}
+							}
+						}
+					}
+
+					>tbody {
+
+						>tr {
+
+							>th,
+							td {
+								border-right: 1px solid #eeeeee;
+
+								.ui_fluc {
+									position: static;
+								}
+
+								&.tr_act {
+									background: #ffe6d5;
+								}
+							}
+
+							>th {
+								background: #f0f0f0;
+								border-left: 0;
+								border-color: #e9e9e9;
+								color: #c0c0c0;
+							}
+
+
+							&.tb_margin {
+
+								>td {
+									height: 10px;
+									background: #f8f8f8;
+									border: 0;
+									border-bottom: 1px solid #eeeeee;
+								}
+							}
+						}
+					}
+				}
+
+				>.active_bar {
+					position: absolute;
+					background: #505050;
+				}
+			}
+		}
+
+		&.is-rank {
+			>.wrap {
+				>table {
+					>thead {
+						>tr {
+
+							>th,
+							>td {
+								height: 24px;
+								padding: 9px 0;
+
+								&:nth-child(2) {
+									border-top-color: #fac300;
+									background: #ffd859;
+								}
+
+								>strong {
+									color: $font_color_hl2;
+								}
+
+								>em {
+									display: block;
+									color: $font_color;
+								}
+							}
+
+							&:first-child {
+								>th:first-child {
+									border-bottom: 1px solid #d1d1d1;
+								}
+							}
+
+							&:nth-child(2) {
+
+								>th,
+								>td {
+									padding: 0 5px;
+									background: #d7d7d7;
+									color: $font_color;
+									font-size: 0.857em;
+
+									&:nth-child(1) {
+										border-right-color: #fac300;
+									}
+
+									&:nth-child(1),
+									&:nth-child(2) {
+										border-top-color: #fac300;
+										border-bottom-color: #fac300;
+										background: #fac92b;
+									}
+								}
+							}
+						}
+					}
+
+					>tbody {
+						>tr {
+
+							>th,
+							>td {
+								height: 28px;
+								padding: 5px;
+								line-height: 16px;
+
+								&:nth-child(2),
+								&:nth-child(3) {
+									&:not([colspan]) {
+										background: #fff9e5;
+									}
+								}
+							}
+
+							&:hover {
+								.ui_fluc {
+									background: #e3e3e3;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+
+		&.is-thick-right-bd {
+
+			th,
+			td {
+				border-right-color: #c9c9c9 !important;
+			}
+		}
+	}
+
+	&.ui_fixed_table {
+		>.wrap {
+			overflow: auto;
+
+			>table {
+				min-width: 100%;
+				width: auto;
+			}
+
+			.on_left_bd {
+				border-left: 1px solid $brd_color_dm !important;
+			}
+		}
+
+		&.vertical_scroll {
+			>.wrap {
+				>table {
+					//width: 100%;
+				}
+			}
+		}
+	}
+
+	&.is-slim {
+
+		th,
+		td {
+			padding-left: 2px !important;
+			padding-right: 2px !important;
+		}
+	}
+
+	&:not(.not_over) {
+
+		// Over액션 일어나야 하는 경우
+		>.wrap {
+			>table {
+				>tbody {
+					>tr {
+						&:hover {
+							>th:not([rowspan]):not(.no_over) {
+								background: #dedede;
+								border-color: #dcdcdc;
+							}
+
+							>td:not([rowspan]):not(.no_over) {
+								background: #f1f1f1;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.not_top_brd {
+
+		// Top 보더 제거
+		>.wrap {
+			border-top: none;
+
+			>table {
+				border-top: none;
+			}
+		}
+	}
+
+	&.not_bot_brd {
+
+		// Bottom 보더 제거
+		>.wrap {
+			border-bottom: none;
+
+			>table {
+				>tbody {
+					>tr {
+						&:last-child {
+							>td {
+								border-bottom: none;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.is-pad-zero {
+
+		th,
+		td {
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+	}
+}
+
+// 입력 게시판
+.ui_brd_inputs {
+	>table {
+		width: 100%;
+
+		>tbody {
+			>tr {
+				>th {
+					padding: 8px 15px;
+					border-right: 1px solid $brd_color_dm;
+					border-bottom: 1px solid $brd_color_dm;
+					background: #f9f9f9;
+					color: #333333;
+					text-align: right;
+
+					&.ui_vt {
+						line-height: 26px;
+					}
+				}
+
+				>td {
+					padding: 8px 15px;
+					border-right: 1px solid $brd_color_dm;
+					border-bottom: 1px solid $brd_color_dm;
+					line-height: 26px;
+					vertical-align: top;
+					@include clearBoth();
+
+					&:last-child {
+						border-right: none;
+					}
+
+					>* {
+						float: left;
+						margin: 0 5px 0 0;
+
+						&:last-child {
+							margin-right: 0;
+						}
+					}
+
+					// Input 버튼 가지고 있는 형태
+					.ui_input_type_1_btn {
+						float: none;
+						position: relative;
+						padding: 0 55px 0 0;
+						margin: 0 0 5px 0;
+
+						.in_btn {
+							position: absolute;
+							bottom: 0;
+							right: 0;
+							width: 50px;
+							padding-left: 0;
+							padding-right: 0;
+							text-align: center;
+						}
+
+						&:last-child {
+							margin: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.on_top_bd {
+		// Top 보더 생성
+		border-top: 1px solid $brd_color_dm;
+	}
+
+	&.input_grp {
+
+		// th우측 정렬 되는 Input그룹일 경우
+		>table {
+			>tbody {
+				>tr {
+					>th {
+						text-align: right;
+					}
+				}
+			}
+		}
+	}
+
+	&.not_bot_brd {
+
+		// Bottom 보더 제거
+		>table {
+			>tbody {
+				>tr {
+					&:last-child {
+
+						>th,
+						>td {
+							border-bottom: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.small {
+
+		th,
+		td {
+			padding-top: 3px;
+			padding-bottom: 3px;
+		}
+	}
+}
+
+// 순위 게시판
+.ui_brd_rank {
+	border: 1px solid #e9e9e9;
+	border-radius: 4px;
+	background: #ffffff;
+
+	>.header {
+		position: relative;
+		border-bottom: 1px solid #e9e9e9;
+
+		>h5 {
+			height: 60px;
+			padding: 21px 20px;
+			box-sizing: border-box;
+			color: $font_color_hl2;
+			font-size: 1.286em;
+			font-weight: bold;
+			line-height: 1;
+		}
+
+		>.header_rc {
+			position: absolute;
+			top: 21px;
+			right: 20px;
+			color: $font_color_dm;
+			font-size: 0.857em;
+			line-height: 18px;
+		}
+
+		&.add_arrow {}
+	}
+
+	>.wrap {
+		padding: 0 10px;
+		border-top: 6px solid #f8f8f8;
+		box-sizing: border-box;
+
+		ul {
+			display: table;
+			width: 100%;
+			height: 100%;
+			counter-reset: list-number;
+
+			li {
+				display: table-row;
+				counter-increment: list-number;
+
+				&:last-child {
+					.item {
+						border: none;
+					}
+				}
+
+				.item {
+					display: table-cell;
+					position: relative;
+					padding: 0 80px 0 0;
+					border-bottom: 1px solid #f0f0f0;
+					vertical-align: middle;
+
+					.title {
+						color: $font_color_hl2;
+						font-size: 1.143em;
+						font-weight: bold;
+
+						&:before {
+							content: counter(list-number)'.';
+							padding: 0 10px 0 0;
+							color: $font_color_dm;
+							font-weight: normal;
+						}
+					}
+
+					.volume {
+						position: absolute;
+						top: 50%;
+						right: 0;
+						padding: 0 8px;
+						margin: -18px 0 0 0;
+						font-size: 0.857em;
+						line-height: 18px;
+					}
+
+					.ui_fluc {
+						position: absolute;
+						top: 50%;
+						right: 0;
+						padding: 0 8px;
+						margin: 2px 0 0 0;
+						border-radius: 50px;
+						background: #f0f0f0;
+						font-size: 0.857em;
+						line-height: 16px;
+					}
+				}
+			}
+		}
+	}
+
+	&.h_scroll {
+
+		>.wrap {
+			overflow-y: scroll;
+
+			ul {
+				display: block;
+
+				li {
+					display: table;
+					width: 100%;
+					height: 60px;
+
+				}
+			}
+		}
+	}
+
+	&.no_bd {
+		border: 0;
+	}
+}
+
+.ui_list_select {
+	height: 100%;
+
+	>.wrap {
+		padding: 10px;
+
+		>ul {
+			display: block;
+
+			>li {
+				width: 100%;
+				margin-bottom: 4px;
+
+				>.sel_btn {
+					display: block;
+					width: 100%;
+					height: 50px;
+					background: #f1f1f1;
+					border-radius: 3px;
+					padding: 7px 10px;
+					box-sizing: border-box;
+					text-align: left;
+					@include transition();
+
+					>* {
+						display: inline-block;
+						vertical-align: middle;
+
+						&.lc {
+							width: 60%;
+							text-align: left;
+						}
+
+						&.rc {
+							float: right;
+							width: 25%;
+							text-align: right;
+						}
+
+						>.ti_box {
+							overflow: hidden;
+
+							>* {
+								display: block;
+							}
+						}
+					}
+
+					.num {
+						width: 14px;
+						color: $font_color_dm;
+						text-align: center;
+						line-height: 24px;
+					}
+
+					.sub_ti {
+						color: $font_color;
+						font-size: 12px;
+						line-height: 17px;
+					}
+
+					.ti {
+						color: #000000;
+						font-size: 16px;
+						line-height: 20px;
+						font-weight: bold;
+						// white-space: nowrap;
+						// overflow: hidden;
+						// text-overflow: ellipsis;
+					}
+
+					.count {
+						padding: 0 3px 0 0;
+						font-size: 11.9px;
+						color: $font_color;
+						line-height: 14px;
+						vertical-align: top;
+					}
+
+					.fluc_box {
+						display: inline-block;
+						background: #ffffff;
+						padding: 1px 6px 3px;
+						border-radius: 10px;
+						line-height: 1;
+
+						.ui_fluc {
+							font-size: 11.9px;
+							line-height: 1;
+						}
+					}
+
+					&:hover {
+						background: #e1e1e1;
+					}
+
+					&.active {
+						background: $component_active_color;
+
+						.num {
+							color: #ffffff;
+						}
+
+						.sub_ti {
+							color: #ffffff;
+						}
+
+						.ti {
+							color: #ffffff;
+						}
+
+						.count {
+							color: #ffffff;
+						}
+					}
+
+					&.all {
+						.ti {
+							float: left;
+						}
+
+						.count {
+							// float: right;
+							line-height: 24px;
+						}
+
+						&:after {
+							content: '';
+							display: block;
+							clear: both;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.is-box {
+		border: 1px solid #e9e9e9;
+		background: #ffffff;
+
+		.sel_btn {
+			position: relative;
+
+			.num {
+				line-height: 36px !important;
+			}
+
+			.ti {
+				line-height: 36px !important;
+			}
+
+			.rc {
+				width: auto !important;
+
+				.ui_lnk.count {
+					position: absolute;
+					top: 50%;
+					right: 10px;
+					padding: 0;
+					margin: -15px 0 0 0;
+
+					>.txt {
+						line-height: 1 !important;
+					}
+				}
+
+				.fluc_box {
+					position: absolute;
+					top: 50%;
+					right: 10px;
+					padding: 3px 6px;
+					margin: -1px 0 0 0;
+					line-height: 11px;
+				}
+			}
+		}
+	}
+
+	&.v_scroll {
+		overflow-y: auto;
+	}
+
+	&.is-slim {
+		>.wrap {
+			>ul {
+				>li {
+					>.sel_btn {
+						position: relative;
+						height: auto;
+						padding: 6px 10px;
+
+						.ti {
+							display: block;
+							// max-width: 120px;
+							color: $font_color_hl2;
+							font-size: 14px;
+							font-weight: normal;
+						}
+
+						>.volume {
+							position: absolute;
+							top: 50%;
+							right: 10px;
+							margin: -0.5em 0 0 0;
+							color: $font_color;
+							font-size: 0.857em;
+							line-height: 1;
+						}
+
+						&.active {
+							padding: 16px 10px;
+
+							.ti {
+								color: #ffffff;
+							}
+
+							>.volume {
+								color: #dadada;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.no_data {
+		position: relative;
+
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			background: #ffffff;
+			text-align: center;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			display: block;
+			width: 119px;
+			height: 83px;
+			margin: -42px 0 0 -60px;
+			background: url(../img/ui/no_data_icons.png) no-repeat 0 0;
+		}
+	}
+
+	&.h_scroll {
+		overflow-x: auto;
+	}
+}

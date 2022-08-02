@@ -1,0 +1,149 @@
+@charset "utf-8";
+
+#popup_container {
+
+    // 사용자 등록/수정
+    @at-root #popup_rel_info {
+        width: 742px;
+
+        .ui_in_search {
+            input {
+                width: 400px;
+            }
+        }
+    }
+
+    // 사용자 등록/수정
+    @at-root #popup_rel_info_detail {
+        width: 1175px;
+
+        .ui_in_search {
+            input {
+                width: 400px;
+            }
+        }
+
+        .ui_col.w15 {
+            // width: 700px;
+        }
+
+        .ui_col.w9 {
+            // width: 490px;
+        }
+    }
+
+    // Daily VOC
+    @at-root #popup_voc {
+        width: 900px;
+
+        .ui_brd_list {
+
+            th,
+            td {
+                padding-left: 2px;
+                padding-right: 2px;
+            }
+        }
+
+        .ui_in_search {
+            input {
+                width: 580px;
+            }
+
+            &.is-confirm {
+                width: 100%;
+
+                input {
+                    width: 100%;
+                }
+            }
+        }
+
+        .issue_only {
+            display: block;
+            width: 103px;
+
+            input {
+                @include customComponent();
+
+                &+label {
+                    display: block;
+                    height: 26px;
+                    border: 1px solid #e1e1e1;
+                    background: #ffffff;
+                    box-sizing: border-box;
+                    text-align: center;
+                    line-height: 24px;
+                    cursor: pointer;
+                    @include transition();
+
+                    &:before {
+                        content: '';
+                        @include inlineBlock();
+                        width: 20px;
+                        height: 20px;
+                        margin: 2px 2px 0 0;
+                        border-radius: 2px;
+                        background: url(../img/ui/ui_btns_icon.png) no-repeat -223px -77px;
+                        vertical-align: top;
+                    }
+
+                    &:hover {
+                        border: 1px solid $point_color;
+                    }
+                }
+
+                &:checked {
+                    &+label {
+                        border: 1px solid $point_color;
+                        // background: #555555;
+                        // color: #ffffff;
+
+                        &:before {
+                            background-position: -257px -77px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 이슈 목록
+    @at-root #popup_issue {
+        width: 900px;
+    }
+
+    // 이슈정보 상세보기
+    @at-root #popup_issue_view {
+        width: 800px;
+
+        .voc_grp {
+            float: none;
+            padding: 5px 0;
+            border-bottom: 1px dotted #e5e5e5;
+            line-height: 1.4em;
+
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+}
+
+#inPopup_container {
+
+    // 이슈 상세관리
+    @at-root #add_issue {
+        width: 600px;
+
+        .dcp {
+            select {
+                width: 150px;
+            }
+        }
+
+        .ui_textarea {
+            width: 100%;
+        }
+    }
+}

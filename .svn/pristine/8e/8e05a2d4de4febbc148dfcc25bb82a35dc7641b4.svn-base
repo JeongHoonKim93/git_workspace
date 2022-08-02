@@ -1,0 +1,74 @@
+/* °øÅë */
+
+BODY {
+	SCROLLBAR-FACE-COLOR: #f2f2f2; SCROLLBAR-HIGHLIGHT-COLOR: #999999; SCROLLBAR-SHADOW-COLOR: #999999; SCROLLBAR-3DLIGHT-COLOR: #ffffff; SCROLLBAR-ARROW-COLOR: #333333; SCROLLBAR-TRACK-COLOR: #f2f2f2; FONT-FAMILY: "Dotum"; SCROLLBAR-DARKSHADOW-COLOR: #ffffff; HEIGHT: 100%
+}
+table, td, input, select {font-size:12px; font-family:Dotum;line-height: 16px; color: #666666}
+image {border:0px;}
+
+a:link    {color:#666666;text-decoration:none;}
+a:visited {color:#666666;text-decoration:none;}
+a:active  {color:#666666;text-decoration:none;}
+a:hover   {color:#666666;text-decoration:none;}
+
+
+/* ÄÁÅÙÃ÷ */ 
+
+.gray {
+	font-size: 12px;
+	color: #666666;
+	line-height: normal;
+	font-family: Dotum;
+}
+.black {
+	font-size: 12px;
+	color: #333333;
+	line-height: normal;
+	font-family: Dotum;
+}
+.gray_s {
+	font-size: 11px;
+	color: #666666;
+	line-height: normal;
+	font-family: Dotum;
+}
+.gray_s_02 {
+	font-size: 10px;
+	color: #666666;
+	line-height: normal;
+	font-family: Arial;
+}
+.gray_s_01 {
+	font-size: 11px;
+	color: #B0B0B0;
+	line-height: normal;
+	font-family: Dotum;
+}
+.brown {
+	font-size: 12px;
+	color: #5F513A;
+	line-height: normal;
+	font-family: Dotum;
+}
+.brown_s {
+	font-size: 11px;
+	color: #7E6C4F;
+	line-height: normal;
+	font-family: Dotum;
+}
+.orange {
+	font-size: 12px;
+	color: #CC5F0D;
+	line-height: normal;
+	font-family: Dotum;
+}
+.yellow_s   {
+	font-size: 11px;
+	color: #EFFF00;
+	line-height: normal;
+	font-family: Dotum;
+}
+	
+.input_text {height:17px; border-top: 1px #CFCFCF solid; border-left: 1px #CFCFCF solid; border-right: 1px #CFCFCF solid; border-bottom: 1px #CFCFCF solid; background:#FFFFFF; font-size:12px; color:#666666;}
+.login {height:17px; border-top: 1px #FBFBFB solid; border-left: 1px #FBFBFB solid; border-right: 1px #FBFBFB solid; border-bottom: 1px #FBFBFBsolid; background:#FBFBFB; font-size:12px; color:#666666;}
+

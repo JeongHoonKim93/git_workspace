@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+// Variables
+/* Style */
+#wrap {
+    &.login {
+        display: table;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        background: #ffffff;
+
+        >.wrap {
+            display: table-row;
+            align-self: center;
+            border-radius: 100px;
+
+            >form {
+                display: table-cell;
+                vertical-align: middle;
+
+                >.wrap {
+                    width: 351px;
+                    margin: 0 auto;
+
+                    >h1 {
+                        padding: 0 0 7px 0;
+                        margin: 0 0 30px 0;
+                        color: #212121;
+                        font-size: 40px;
+                        line-height: 1;
+                    }
+
+                    .row {
+                        position: relative;
+
+                        >input {
+                            display: block;
+                            width: 100%;
+                            padding-left: 36px;
+                            margin-bottom: 10px;
+                            border: none;
+                            background: $component_back;
+                            box-sizing: border-box;
+                            outline: none;
+                            color: $component_font;
+                            line-height: 45px;
+                            font-weight: bold;
+                            @include transition();
+
+                            &:valid {
+                                background: #fbf08e;
+                                color: $component_active_color_hl;
+
+                                &+label {
+                                    &:before {
+                                        color: $component_active_color_hl;
+                                    }
+                                }
+                            }
+
+
+                        }
+
+                        >label {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            display: block;
+                            width: 36px;
+                            height: 45px;
+                            text-align: center;
+
+                            &:before {
+                                content: '';
+                                color: #c6c6c6;
+                                font-family: 'icomoon';
+                                font-size: 20px;
+                                line-height: 45px;
+                                @include transition();
+                            }
+
+                            &[for=input_id] {
+
+                                &:before {
+                                    content: '';
+                                }
+                            }
+
+                            &[for=input_pw] {
+
+                                &:before {
+                                    content: '\e084';
+                                }
+                            }
+                        }
+                    }
+
+                    >.ui_btn {
+                        height: 40px;
+                        border-color: $point_color;
+                        background: $point_color;
+                        color: #ffffff;
+                        margin-top: 30px;
+                        border-radius: 20px;
+                        font-size: 16px;
+                        font-weight: bold;
+                        // pointer-events: none;
+
+                        &:hover,
+                        &:active {
+                            border-color: #ff6e2e !important;
+                            background: #ff6e2e !important;
+                        }
+                    }
+
+                    >.txt {
+                        // height: 20px;
+                        margin: 10px 0 0 0;
+                        border-radius: 100px;
+                        color: #b3b3b3;
+                        // background: #f6f6f6;
+                        font-size: 12px;
+                        text-align: center;
+                        line-height: 20px;
+
+                        a {
+                            &:hover {
+                                border-bottom: 1px solid $font_color_hl;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        footer {
+            display: none;
+        }
+    }
+}

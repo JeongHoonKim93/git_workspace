@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+// Style
+#content.page-search {
+
+    .ui_box {
+
+        > .box_content {
+
+            > .is-bt-pad {
+                padding-bottom: 25px;
+            }
+
+            .is-top-mg {
+                margin-top: 20px;
+            }
+        }
+    }
+}
