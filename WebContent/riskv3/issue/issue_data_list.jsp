@@ -19,7 +19,7 @@
 	ParseRequest pr	= new ParseRequest(request);
 	pr.printParams();
 	DateUtil du = new DateUtil();
-	//IssueCodeMgr 인스턴스 생성 테스트
+	//IssueCodeMgr 인스턴스 생성
 	IssueCodeMgr icMgr = IssueCodeMgr.getInstance();
 	icMgr.init(0);
 	//IssueMgr
